@@ -20,10 +20,10 @@ package accounts
 import (
 	"math/big"
 
-	ethereum "github.com/ethereum/go-ethereum"
-	"github.com/ethereum/go-ethereum/common"
-	"github.com/ethereum/go-ethereum/core/types"
-	"github.com/ethereum/go-ethereum/event"
+	ethereum "github.com/Sberex/go-sberex"
+	"github.com/Sberex/go-sberex/common"
+	"github.com/Sberex/go-sberex/core/types"
+	"github.com/Sberex/go-sberex/event"
 )
 
 // Account represents an Ethereum account located at a specific location defined
