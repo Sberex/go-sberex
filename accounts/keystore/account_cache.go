@@ -27,9 +27,9 @@ import (
 	"sync"
 	"time"
 
-	"github.com/ethereum/go-ethereum/accounts"
-	"github.com/ethereum/go-ethereum/common"
-	"github.com/ethereum/go-ethereum/log"
+	"github.com/Sberex/go-sberex/accounts"
+	"github.com/Sberex/go-sberex/common"
+	"github.com/Sberex/go-sberex/log"
 	"gopkg.in/fatih/set.v0"
 )
 
