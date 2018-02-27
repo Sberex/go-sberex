@@ -27,8 +27,8 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/ethereum/go-ethereum/common"
-	"github.com/ethereum/go-ethereum/crypto"
+	"github.com/Sberex/go-sberex/common"
+	"github.com/Sberex/go-sberex/crypto"
 )
 
 func tmpKeyStoreIface(t *testing.T, encrypted bool) (dir string, ks keyStore) {
