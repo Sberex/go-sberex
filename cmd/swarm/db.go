@@ -22,9 +22,9 @@ import (
 	"os"
 	"path/filepath"
 
-	"github.com/ethereum/go-ethereum/cmd/utils"
-	"github.com/ethereum/go-ethereum/log"
-	"github.com/ethereum/go-ethereum/swarm/storage"
+	"github.com/Sberex/go-sberex/cmd/utils"
+	"github.com/Sberex/go-sberex/log"
+	"github.com/Sberex/go-sberex/swarm/storage"
 	"gopkg.in/urfave/cli.v1"
 )
 
