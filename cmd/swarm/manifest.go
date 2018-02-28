@@ -24,9 +24,9 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/ethereum/go-ethereum/cmd/utils"
-	"github.com/ethereum/go-ethereum/swarm/api"
-	swarm "github.com/ethereum/go-ethereum/swarm/api/client"
+	"github.com/Sberex/go-sberex/cmd/utils"
+	"github.com/Sberex/go-sberex/swarm/api"
+	swarm "github.com/Sberex/go-sberex/swarm/api/client"
 	"gopkg.in/urfave/cli.v1"
 )
 
