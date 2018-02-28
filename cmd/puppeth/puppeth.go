@@ -22,7 +22,7 @@ import (
 	"os"
 	"time"
 
-	"github.com/ethereum/go-ethereum/log"
+	"github.com/Sberex/go-sberex/log"
 	"gopkg.in/urfave/cli.v1"
 )
 
@@ -30,7 +30,7 @@ import (
 func main() {
 	app := cli.NewApp()
 	app.Name = "puppeth"
-	app.Usage = "assemble and maintain private Ethereum networks"
+	app.Usage = "assemble and maintain private Sberex networks"
 	app.Flags = []cli.Flag{
 		cli.StringFlag{
 			Name:  "network",
