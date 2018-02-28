@@ -30,9 +30,9 @@ import (
 	"github.com/ethereum/go-ethereum/log"
 )
 
-// nodeDockerfile is the Dockerfile required to run an Ethereum node.
+// nodeDockerfile is the Dockerfile required to run an Sberex node.
 var nodeDockerfile = `
-FROM ethereum/client-go:latest
+FROM sberex/client-go:latest
 
 ADD genesis.json /genesis.json
 {{if .Unlock}}
@@ -246,7 +246,7 @@ func checkNode(client *sshClient, network string, boot bool) (*nodeInfos, error)
 	// Assemble and return the useful infos
 	stats := &nodeInfos{
 		genesis:    genesis,
-		datadir:    infos.volumes["/root/.ethereum"],
+		datadir:    infos.volumes["/root/.sberex"],
 		ethashdir:  infos.volumes["/root/.ethash"],
 		port:       port,
 		peersTotal: totalPeers,
