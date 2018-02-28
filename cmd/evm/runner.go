@@ -27,16 +27,16 @@ import (
 
 	goruntime "runtime"
 
-	"github.com/ethereum/go-ethereum/cmd/evm/internal/compiler"
-	"github.com/ethereum/go-ethereum/cmd/utils"
-	"github.com/ethereum/go-ethereum/common"
-	"github.com/ethereum/go-ethereum/core"
-	"github.com/ethereum/go-ethereum/core/state"
-	"github.com/ethereum/go-ethereum/core/vm"
-	"github.com/ethereum/go-ethereum/core/vm/runtime"
-	"github.com/ethereum/go-ethereum/ethdb"
-	"github.com/ethereum/go-ethereum/log"
-	"github.com/ethereum/go-ethereum/params"
+	"github.com/Sberex/go-sberex/cmd/evm/internal/compiler"
+	"github.com/Sberex/go-sberex/cmd/utils"
+	"github.com/Sberex/go-sberex/common"
+	"github.com/Sberex/go-sberex/core"
+	"github.com/Sberex/go-sberex/core/state"
+	"github.com/Sberex/go-sberex/core/vm"
+	"github.com/Sberex/go-sberex/core/vm/runtime"
+	"github.com/Sberex/go-sberex/ethdb"
+	"github.com/Sberex/go-sberex/log"
+	"github.com/Sberex/go-sberex/params"
 	cli "gopkg.in/urfave/cli.v1"
 )
 
