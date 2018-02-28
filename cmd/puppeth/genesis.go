@@ -21,11 +21,11 @@ import (
 	"errors"
 	"math"
 
-	"github.com/ethereum/go-ethereum/common"
-	"github.com/ethereum/go-ethereum/common/hexutil"
-	"github.com/ethereum/go-ethereum/consensus/ethash"
-	"github.com/ethereum/go-ethereum/core"
-	"github.com/ethereum/go-ethereum/params"
+	"github.com/Sberex/go-sberex/common"
+	"github.com/Sberex/go-sberex/common/hexutil"
+	"github.com/Sberex/go-sberex/consensus/ethash"
+	"github.com/Sberex/go-sberex/core"
+	"github.com/Sberex/go-sberex/params"
 )
 
 // cppEthereumGenesisSpec represents the genesis specification format used by the
@@ -204,7 +204,7 @@ type parityChainSpec struct {
 			Ethereum struct {
 				Nonce   hexutil.Bytes `json:"nonce"`
 				MixHash hexutil.Bytes `json:"mixHash"`
-			} `json:"ethereum"`
+			} `json:"sberex"`
 		} `json:"seal"`
 
 		Difficulty *hexutil.Big   `json:"difficulty"`
