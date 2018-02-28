@@ -25,17 +25,17 @@ import (
 	"strings"
 	"time"
 
-	"github.com/ethereum/go-ethereum/accounts"
-	"github.com/ethereum/go-ethereum/accounts/keystore"
-	"github.com/ethereum/go-ethereum/cmd/utils"
-	"github.com/ethereum/go-ethereum/common"
-	"github.com/ethereum/go-ethereum/console"
-	"github.com/ethereum/go-ethereum/eth"
-	"github.com/ethereum/go-ethereum/ethclient"
-	"github.com/ethereum/go-ethereum/internal/debug"
-	"github.com/ethereum/go-ethereum/log"
-	"github.com/ethereum/go-ethereum/metrics"
-	"github.com/ethereum/go-ethereum/node"
+	"github.com/Sberex/go-sberex/accounts"
+	"github.com/Sberex/go-sberex/accounts/keystore"
+	"github.com/Sberex/go-sberex/cmd/utils"
+	"github.com/Sberex/go-sberex/common"
+	"github.com/Sberex/go-sberex/console"
+	"github.com/Sberex/go-sberex/eth"
+	"github.com/Sberex/go-sberex/ethclient"
+	"github.com/Sberex/go-sberex/internal/debug"
+	"github.com/Sberex/go-sberex/log"
+	"github.com/Sberex/go-sberex/metrics"
+	"github.com/Sberex/go-sberex/node"
 	"gopkg.in/urfave/cli.v1"
 )
 
@@ -49,7 +49,7 @@ var (
 	// Ethereum address of the Geth release oracle.
 	relOracle = common.HexToAddress("0xfa7b9770ca4cb04296cac84f37736d4041251cdf")
 	// The app that holds all commands and flags.
-	app = utils.NewApp(gitCommit, "the go-ethereum command line interface")
+	app = utils.NewApp(gitCommit, "the go-sberex command line interface")
 	// flags that configure the node
 	nodeFlags = []cli.Flag{
 		utils.IdentityFlag,
@@ -287,7 +287,7 @@ func startNode(ctx *cli.Context, stack *node.Node) {
 		}
 		var ethereum *eth.Ethereum
 		if err := stack.Service(&ethereum); err != nil {
-			utils.Fatalf("Ethereum service not running: %v", err)
+			utils.Fatalf("Sberex service not running: %v", err)
 		}
 		// Use a reduced number of threads if requested
 		if threads := ctx.GlobalInt(utils.MinerThreadsFlag.Name); threads > 0 {
