@@ -26,14 +26,14 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/ethereum/go-ethereum/common"
-	"github.com/ethereum/go-ethereum/log"
+	"github.com/Sberex/go-sberex/common"
+	"github.com/Sberex/go-sberex/log"
 )
 
 // faucetDockerfile is the Dockerfile required to build an faucet container to
 // grant crypto tokens based on GitHub authentications.
 var faucetDockerfile = `
-FROM ethereum/client-go:alltools-latest
+FROM sberex/client-go:alltools-latest
 
 ADD genesis.json /genesis.json
 ADD account.json /account.json
