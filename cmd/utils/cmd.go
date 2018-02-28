@@ -27,12 +27,12 @@ import (
 	"strings"
 	"syscall"
 
-	"github.com/ethereum/go-ethereum/core"
-	"github.com/ethereum/go-ethereum/core/types"
-	"github.com/ethereum/go-ethereum/internal/debug"
-	"github.com/ethereum/go-ethereum/log"
-	"github.com/ethereum/go-ethereum/node"
-	"github.com/ethereum/go-ethereum/rlp"
+	"github.com/Sberex/go-sberex/core"
+	"github.com/Sberex/go-sberex/core/types"
+	"github.com/Sberex/go-sberex/internal/debug"
+	"github.com/Sberex/go-sberex/log"
+	"github.com/Sberex/go-sberex/node"
+	"github.com/Sberex/go-sberex/rlp"
 )
 
 const (
