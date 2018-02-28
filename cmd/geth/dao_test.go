@@ -23,10 +23,10 @@ import (
 	"path/filepath"
 	"testing"
 
-	"github.com/ethereum/go-ethereum/common"
-	"github.com/ethereum/go-ethereum/core"
-	"github.com/ethereum/go-ethereum/ethdb"
-	"github.com/ethereum/go-ethereum/params"
+	"github.com/Sberex/go-sberex/common"
+	"github.com/Sberex/go-sberex/core"
+	"github.com/Sberex/go-sberex/ethdb"
+	"github.com/Sberex/go-sberex/params"
 )
 
 // Genesis block for nodes which don't care about the DAO fork (i.e. not configured)
