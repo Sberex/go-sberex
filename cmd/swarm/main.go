@@ -28,22 +28,22 @@ import (
 	"strings"
 	"syscall"
 
-	"github.com/ethereum/go-ethereum/accounts"
-	"github.com/ethereum/go-ethereum/accounts/keystore"
-	"github.com/ethereum/go-ethereum/cmd/utils"
-	"github.com/ethereum/go-ethereum/common"
-	"github.com/ethereum/go-ethereum/console"
-	"github.com/ethereum/go-ethereum/crypto"
-	"github.com/ethereum/go-ethereum/ethclient"
-	"github.com/ethereum/go-ethereum/internal/debug"
-	"github.com/ethereum/go-ethereum/log"
-	"github.com/ethereum/go-ethereum/node"
-	"github.com/ethereum/go-ethereum/p2p"
-	"github.com/ethereum/go-ethereum/p2p/discover"
-	"github.com/ethereum/go-ethereum/params"
-	"github.com/ethereum/go-ethereum/swarm"
-	bzzapi "github.com/ethereum/go-ethereum/swarm/api"
-	swarmmetrics "github.com/ethereum/go-ethereum/swarm/metrics"
+	"github.com/Sberex/go-sberex/accounts"
+	"github.com/Sberex/go-sberex/accounts/keystore"
+	"github.com/Sberex/go-sberex/cmd/utils"
+	"github.com/Sberex/go-sberex/common"
+	"github.com/Sberex/go-sberex/console"
+	"github.com/Sberex/go-sberex/crypto"
+	"github.com/Sberex/go-sberex/ethclient"
+	"github.com/Sberex/go-sberex/internal/debug"
+	"github.com/Sberex/go-sberex/log"
+	"github.com/Sberex/go-sberex/node"
+	"github.com/Sberex/go-sberex/p2p"
+	"github.com/Sberex/go-sberex/p2p/discover"
+	"github.com/Sberex/go-sberex/params"
+	"github.com/Sberex/go-sberex/swarm"
+	bzzapi "github.com/Sberex/go-sberex/swarm/api"
+	swarmmetrics "github.com/Sberex/go-sberex/swarm/metrics"
 
 	"gopkg.in/urfave/cli.v1"
 )
@@ -464,7 +464,7 @@ func registerBzzService(bzzconfig *bzzapi.Config, ctx *cli.Context, stack *node.
 
 		return swarm.NewSwarm(ctx, swapClient, bzzconfig)
 	}
-	//register within the ethereum node
+	//register within the sberex node
 	if err := stack.Register(boot); err != nil {
 		utils.Fatalf("Failed to register the Swarm service: %v", err)
 	}
