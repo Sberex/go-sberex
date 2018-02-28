@@ -21,9 +21,9 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/ethereum/go-ethereum/accounts/keystore"
-	"github.com/ethereum/go-ethereum/common"
-	"github.com/ethereum/go-ethereum/log"
+	"github.com/Sberex/go-sberex/accounts/keystore"
+	"github.com/Sberex/go-sberex/common"
+	"github.com/Sberex/go-sberex/log"
 )
 
 // deployNode creates a new node configuration based on some user input.
