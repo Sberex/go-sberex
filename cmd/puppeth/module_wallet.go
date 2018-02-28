@@ -25,7 +25,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/ethereum/go-ethereum/log"
+	"github.com/Sberex/go-sberex/log"
 )
 
 // walletDockerfile is the Dockerfile required to run a web wallet.
@@ -189,7 +189,7 @@ func checkWallet(client *sshClient, network string) (*walletInfos, error) {
 	}
 	// Assemble and return the useful infos
 	stats := &walletInfos{
-		datadir:  infos.volumes["/root/.ethereum"],
+		datadir:  infos.volumes["/root/.sberex"],
 		nodePort: nodePort,
 		rpcPort:  rpcPort,
 		webHost:  host,
