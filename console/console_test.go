@@ -26,12 +26,12 @@ import (
 	"testing"
 	"time"
 
-	"github.com/ethereum/go-ethereum/common"
-	"github.com/ethereum/go-ethereum/consensus/ethash"
-	"github.com/ethereum/go-ethereum/core"
-	"github.com/ethereum/go-ethereum/eth"
-	"github.com/ethereum/go-ethereum/internal/jsre"
-	"github.com/ethereum/go-ethereum/node"
+	"github.com/Sberex/go-sberex/common"
+	"github.com/Sberex/go-sberex/consensus/ethash"
+	"github.com/Sberex/go-sberex/core"
+	"github.com/Sberex/go-sberex/eth"
+	"github.com/Sberex/go-sberex/internal/jsre"
+	"github.com/Sberex/go-sberex/node"
 )
 
 const (
@@ -75,7 +75,7 @@ func (p *hookedPrompter) SetWordCompleter(completer WordCompleter) {}
 type tester struct {
 	workspace string
 	stack     *node.Node
-	ethereum  *eth.Ethereum
+	sberex    *eth.Sberex
 	console   *Console
 	input     *hookedPrompter
 	output    *bytes.Buffer
@@ -131,13 +131,13 @@ func newTester(t *testing.T, confOverride func(*eth.Config)) *tester {
 		t.Fatalf("failed to create JavaScript console: %v", err)
 	}
 	// Create the final tester and return
-	var ethereum *eth.Ethereum
-	stack.Service(&ethereum)
+	var sberex *eth.Sberex
+	stack.Service(&sberex)
 
 	return &tester{
 		workspace: workspace,
 		stack:     stack,
-		ethereum:  ethereum,
+		sberex:    sberex,
 		console:   console,
 		input:     prompter,
 		output:    printer,
