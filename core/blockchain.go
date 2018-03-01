@@ -27,20 +27,20 @@ import (
 	"sync/atomic"
 	"time"
 
-	"github.com/ethereum/go-ethereum/common"
-	"github.com/ethereum/go-ethereum/common/mclock"
-	"github.com/ethereum/go-ethereum/consensus"
-	"github.com/ethereum/go-ethereum/core/state"
-	"github.com/ethereum/go-ethereum/core/types"
-	"github.com/ethereum/go-ethereum/core/vm"
-	"github.com/ethereum/go-ethereum/crypto"
-	"github.com/ethereum/go-ethereum/ethdb"
-	"github.com/ethereum/go-ethereum/event"
-	"github.com/ethereum/go-ethereum/log"
-	"github.com/ethereum/go-ethereum/metrics"
-	"github.com/ethereum/go-ethereum/params"
-	"github.com/ethereum/go-ethereum/rlp"
-	"github.com/ethereum/go-ethereum/trie"
+	"github.com/Sberex/go-sberex/common"
+	"github.com/Sberex/go-sberex/common/mclock"
+	"github.com/Sberex/go-sberex/consensus"
+	"github.com/Sberex/go-sberex/core/state"
+	"github.com/Sberex/go-sberex/core/types"
+	"github.com/Sberex/go-sberex/core/vm"
+	"github.com/Sberex/go-sberex/crypto"
+	"github.com/Sberex/go-sberex/ethdb"
+	"github.com/Sberex/go-sberex/event"
+	"github.com/Sberex/go-sberex/log"
+	"github.com/Sberex/go-sberex/metrics"
+	"github.com/Sberex/go-sberex/params"
+	"github.com/Sberex/go-sberex/rlp"
+	"github.com/Sberex/go-sberex/trie"
 	"github.com/hashicorp/golang-lru"
 	"gopkg.in/karalabe/cookiejar.v2/collections/prque"
 )
@@ -55,7 +55,7 @@ const (
 	bodyCacheLimit      = 256
 	blockCacheLimit     = 256
 	maxFutureBlocks     = 256
-	maxTimeFutureBlocks = 30
+	maxTimeFutureBlocks = 70
 	badBlockLimit       = 10
 	triesInMemory       = 128
 
