@@ -25,20 +25,20 @@ import (
 	"sync"
 	"time"
 
-	"github.com/ethereum/go-ethereum/accounts"
-	"github.com/ethereum/go-ethereum/common"
-	"github.com/ethereum/go-ethereum/common/hexutil"
-	"github.com/ethereum/go-ethereum/consensus"
-	"github.com/ethereum/go-ethereum/consensus/misc"
-	"github.com/ethereum/go-ethereum/core/state"
-	"github.com/ethereum/go-ethereum/core/types"
-	"github.com/ethereum/go-ethereum/crypto"
-	"github.com/ethereum/go-ethereum/crypto/sha3"
-	"github.com/ethereum/go-ethereum/ethdb"
-	"github.com/ethereum/go-ethereum/log"
-	"github.com/ethereum/go-ethereum/params"
-	"github.com/ethereum/go-ethereum/rlp"
-	"github.com/ethereum/go-ethereum/rpc"
+	"github.com/Sberex/go-sberex/accounts"
+	"github.com/Sberex/go-sberex/common"
+	"github.com/Sberex/go-sberex/common/hexutil"
+	"github.com/Sberex/go-sberex/consensus"
+	"github.com/Sberex/go-sberex/consensus/misc"
+	"github.com/Sberex/go-sberex/core/state"
+	"github.com/Sberex/go-sberex/core/types"
+	"github.com/Sberex/go-sberex/crypto"
+	"github.com/Sberex/go-sberex/crypto/sha3"
+	"github.com/Sberex/go-sberex/ethdb"
+	"github.com/Sberex/go-sberex/log"
+	"github.com/Sberex/go-sberex/params"
+	"github.com/Sberex/go-sberex/rlp"
+	"github.com/Sberex/go-sberex/rpc"
 	lru "github.com/hashicorp/golang-lru"
 )
 
@@ -53,7 +53,7 @@ const (
 // Clique proof-of-authority protocol constants.
 var (
 	epochLength = uint64(30000) // Default number of blocks after which to checkpoint and reset the pending votes
-	blockPeriod = uint64(15)    // Default minimum difference between two consecutive block's timestamps
+	blockPeriod = uint64(33)    // Default minimum difference between two consecutive block's timestamps
 
 	extraVanity = 32 // Fixed number of extra-data prefix bytes reserved for signer vanity
 	extraSeal   = 65 // Fixed number of extra-data suffix bytes reserved for signer seal
