@@ -21,9 +21,9 @@ import (
 	"errors"
 	"math/big"
 
-	"github.com/ethereum/go-ethereum/core/state"
-	"github.com/ethereum/go-ethereum/core/types"
-	"github.com/ethereum/go-ethereum/params"
+	"github.com/Sberex/go-sberex/core/state"
+	"github.com/Sberex/go-sberex/core/types"
+	"github.com/Sberex/go-sberex/params"
 )
 
 var (
