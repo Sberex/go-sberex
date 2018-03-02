@@ -47,7 +47,7 @@ func run(evm *EVM, contract *Contract, input []byte) ([]byte, error) {
 	return evm.interpreter.Run(contract, input)
 }
 
-// Context provides the EVM with auxiliary information. Once provided
+// Context provides the VM with auxiliary information. Once provided
 // it shouldn't be modified.
 type Context struct {
 	// CanTransfer returns whether the account contains
@@ -70,7 +70,7 @@ type Context struct {
 	Difficulty  *big.Int       // Provides information for DIFFICULTY
 }
 
-// EVM is the Ethereum Virtual Machine base object and provides
+// VM is the Virtual Machine base object and provides
 // the necessary tools to run a contract on the given state with
 // the provided context. It should be noted that any error
 // generated through any of the calls should be considered a
@@ -78,7 +78,7 @@ type Context struct {
 // specific errors should ever be performed. The interpreter makes
 // sure that any errors generated are to be considered faulty code.
 //
-// The EVM should never be reused and is not thread safe.
+// The VM should never be reused and is not thread safe.
 type EVM struct {
 	// Context provides auxiliary blockchain related information
 	Context
@@ -106,7 +106,7 @@ type EVM struct {
 	callGasTemp uint64
 }
 
-// NewEVM retutrns a new EVM . The returned EVM is not thread safe and should
+// NewEVM retutrns a new VM. The returned VM is not thread safe and should
 // only ever be used *once*.
 func NewEVM(ctx Context, statedb StateDB, chainConfig *params.ChainConfig, vmConfig Config) *EVM {
 	evm := &EVM{
@@ -121,7 +121,7 @@ func NewEVM(ctx Context, statedb StateDB, chainConfig *params.ChainConfig, vmCon
 	return evm
 }
 
-// Cancel cancels any running EVM operation. This may be called concurrently and
+// Cancel cancels any running VM operation. This may be called concurrently and
 // it's safe to be called multiple times.
 func (evm *EVM) Cancel() {
 	atomic.StoreInt32(&evm.abort, 1)
@@ -161,7 +161,7 @@ func (evm *EVM) Call(caller ContractRef, addr common.Address, input []byte, gas 
 	}
 	evm.Transfer(evm.StateDB, caller.Address(), to.Address(), value)
 
-	// Initialise a new contract and set the code that is to be used by the EVM.
+	// Initialise a new contract and set the code that is to be used by the VM.
 	// The contract is a scoped environment for this execution context only.
 	contract := NewContract(caller, to, value, gas)
 	contract.SetCallCode(&addr, evm.StateDB.GetCodeHash(addr), evm.StateDB.GetCode(addr))
@@ -178,7 +178,7 @@ func (evm *EVM) Call(caller ContractRef, addr common.Address, input []byte, gas 
 	}
 	ret, err = run(evm, contract, input)
 
-	// When an error was returned by the EVM or when setting the creation code
+	// When an error was returned by the VM or when setting the creation code
 	// above we revert to the snapshot and consume any gas remaining. Additionally
 	// when we're in homestead this also counts for code storage gas errors.
 	if err != nil {
@@ -294,7 +294,7 @@ func (evm *EVM) StaticCall(caller ContractRef, addr common.Address, input []byte
 	contract := NewContract(caller, to, new(big.Int), gas)
 	contract.SetCallCode(&addr, evm.StateDB.GetCodeHash(addr), evm.StateDB.GetCode(addr))
 
-	// When an error was returned by the EVM or when setting the creation code
+	// When an error was returned by the VM or when setting the creation code
 	// above we revert to the snapshot and consume any gas remaining. Additionally
 	// when we're in Homestead this also counts for code storage gas errors.
 	ret, err = run(evm, contract, input)
