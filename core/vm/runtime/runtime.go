@@ -1,18 +1,13 @@
-// Copyright 2015 The go-ethereum Authors
-// This file is part of the go-ethereum library.
+// This file is part of the go-sberex library. The go-sberex library is 
+// free software: you can redistribute it and/or modify it under the terms 
+// of the GNU Lesser General Public License as published by the Free 
+// Software Foundation, either version 3 of the License, or (at your option)
+// any later version.
 //
-// The go-ethereum library is free software: you can redistribute it and/or modify
-// it under the terms of the GNU Lesser General Public License as published by
-// the Free Software Foundation, either version 3 of the License, or
-// (at your option) any later version.
-//
-// The go-ethereum library is distributed in the hope that it will be useful,
+// The go-sberex library is distributed in the hope that it will be useful, 
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-// GNU Lesser General Public License for more details.
-//
-// You should have received a copy of the GNU Lesser General Public License
-// along with the go-ethereum library. If not, see <http://www.gnu.org/licenses/>.
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser 
+// General Public License <http://www.gnu.org/licenses/> for more details.
 
 package runtime
 
@@ -21,16 +16,16 @@ import (
 	"math/big"
 	"time"
 
-	"github.com/ethereum/go-ethereum/common"
-	"github.com/ethereum/go-ethereum/core/state"
-	"github.com/ethereum/go-ethereum/core/vm"
-	"github.com/ethereum/go-ethereum/crypto"
-	"github.com/ethereum/go-ethereum/ethdb"
-	"github.com/ethereum/go-ethereum/params"
+	"github.com/Sberex/go-sberex/common"
+	"github.com/Sberex/go-sberex/core/state"
+	"github.com/Sberex/go-sberex/core/vm"
+	"github.com/Sberex/go-sberex/crypto"
+	"github.com/Sberex/go-sberex/ethdb"
+	"github.com/Sberex/go-sberex/params"
 )
 
 // Config is a basic type specifying certain configuration flags for running
-// the EVM.
+// the VM.
 type Config struct {
 	ChainConfig *params.ChainConfig
 	Difficulty  *big.Int
@@ -89,7 +84,7 @@ func setDefaults(cfg *Config) {
 }
 
 // Execute executes the code using the input as call data during the execution.
-// It returns the EVM's return value, the new state and an error if it failed.
+// It returns the VM's return value, the new state and an error if it failed.
 //
 // Executes sets up a in memory, temporarily, environment for the execution of
 // the given code. It enabled the JIT by default and make sure that it's restored
@@ -124,7 +119,7 @@ func Execute(code, input []byte, cfg *Config) ([]byte, *state.StateDB, error) {
 	return ret, cfg.State, err
 }
 
-// Create executes the code using the EVM create method
+// Create executes the code using the VM create method
 func Create(input []byte, cfg *Config) ([]byte, common.Address, uint64, error) {
 	if cfg == nil {
 		cfg = new(Config)
@@ -151,7 +146,7 @@ func Create(input []byte, cfg *Config) ([]byte, common.Address, uint64, error) {
 }
 
 // Call executes the code given by the contract's address. It will return the
-// EVM's return value or an error if it failed.
+// VM's return value or an error if it failed.
 //
 // Call, unlike Execute, requires a config and also requires the State field to
 // be set.
