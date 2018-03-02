@@ -7,8 +7,8 @@ import (
 	"errors"
 	"math/big"
 
-	"github.com/ethereum/go-ethereum/common"
-	"github.com/ethereum/go-ethereum/common/hexutil"
+	"github.com/Sberex/go-sberex/common"
+	"github.com/Sberex/go-sberex/common/hexutil"
 )
 
 var _ = (*headerMarshaling)(nil)
