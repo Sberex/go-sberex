@@ -1,29 +1,24 @@
-// Copyright 2016 The go-ethereum Authors
-// This file is part of the go-ethereum library.
+// This file is part of the go-sberex library. The go-sberex library is 
+// free software: you can redistribute it and/or modify it under the terms 
+// of the GNU Lesser General Public License as published by the Free 
+// Software Foundation, either version 3 of the License, or (at your option)
+// any later version.
 //
-// The go-ethereum library is free software: you can redistribute it and/or modify
-// it under the terms of the GNU Lesser General Public License as published by
-// the Free Software Foundation, either version 3 of the License, or
-// (at your option) any later version.
-//
-// The go-ethereum library is distributed in the hope that it will be useful,
+// The go-sberex library is distributed in the hope that it will be useful, 
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-// GNU Lesser General Public License for more details.
-//
-// You should have received a copy of the GNU Lesser General Public License
-// along with the go-ethereum library. If not, see <http://www.gnu.org/licenses/>.
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser 
+// General Public License <http://www.gnu.org/licenses/> for more details.
 
 package vm
 
 import (
 	"math/big"
 
-	"github.com/ethereum/go-ethereum/common"
-	"github.com/ethereum/go-ethereum/core/types"
+	"github.com/Sberex/go-sberex/common"
+	"github.com/Sberex/go-sberex/core/types"
 )
 
-// StateDB is an EVM database for full state querying.
+// StateDB is an VM database for full state querying.
 type StateDB interface {
 	CreateAccount(common.Address)
 
@@ -64,8 +59,8 @@ type StateDB interface {
 	ForEachStorage(common.Address, func(common.Hash, common.Hash) bool)
 }
 
-// CallContext provides a basic interface for the EVM calling conventions. The EVM EVM
-// depends on this context being implemented for doing subcalls and initialising new EVM contracts.
+// CallContext provides a basic interface for the EVM calling conventions. The VM
+// depends on this context being implemented for doing subcalls and initialising new VM contracts.
 type CallContext interface {
 	// Call another contract
 	Call(env *EVM, me ContractRef, addr common.Address, data []byte, gas, value *big.Int) ([]byte, error)
