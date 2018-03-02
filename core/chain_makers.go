@@ -20,14 +20,14 @@ import (
 	"fmt"
 	"math/big"
 
-	"github.com/ethereum/go-ethereum/common"
-	"github.com/ethereum/go-ethereum/consensus"
-	"github.com/ethereum/go-ethereum/consensus/misc"
-	"github.com/ethereum/go-ethereum/core/state"
-	"github.com/ethereum/go-ethereum/core/types"
-	"github.com/ethereum/go-ethereum/core/vm"
-	"github.com/ethereum/go-ethereum/ethdb"
-	"github.com/ethereum/go-ethereum/params"
+	"github.com/Sberex/go-sberex/common"
+	"github.com/Sberex/go-sberex/consensus"
+	"github.com/Sberex/go-sberex/consensus/misc"
+	"github.com/Sberex/go-sberex/core/state"
+	"github.com/Sberex/go-sberex/core/types"
+	"github.com/Sberex/go-sberex/core/vm"
+	"github.com/Sberex/go-sberex/ethdb"
+	"github.com/Sberex/go-sberex/params"
 )
 
 // So we can deterministically seed different blockchains
