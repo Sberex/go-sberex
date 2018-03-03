@@ -26,20 +26,20 @@ import (
 	"sync/atomic"
 	"time"
 
-	"github.com/ethereum/go-ethereum/common"
-	"github.com/ethereum/go-ethereum/consensus"
-	"github.com/ethereum/go-ethereum/consensus/misc"
-	"github.com/ethereum/go-ethereum/core"
-	"github.com/ethereum/go-ethereum/core/types"
-	"github.com/ethereum/go-ethereum/eth/downloader"
-	"github.com/ethereum/go-ethereum/eth/fetcher"
-	"github.com/ethereum/go-ethereum/ethdb"
-	"github.com/ethereum/go-ethereum/event"
-	"github.com/ethereum/go-ethereum/log"
-	"github.com/ethereum/go-ethereum/p2p"
-	"github.com/ethereum/go-ethereum/p2p/discover"
-	"github.com/ethereum/go-ethereum/params"
-	"github.com/ethereum/go-ethereum/rlp"
+	"github.com/Sberex/go-sberex/common"
+	"github.com/Sberex/go-sberex/consensus"
+	"github.com/Sberex/go-sberex/consensus/misc"
+	"github.com/Sberex/go-sberex/core"
+	"github.com/Sberex/go-sberex/core/types"
+	"github.com/Sberex/go-sberex/eth/downloader"
+	"github.com/Sberex/go-sberex/eth/fetcher"
+	"github.com/Sberex/go-sberex/ethdb"
+	"github.com/Sberex/go-sberex/event"
+	"github.com/Sberex/go-sberex/log"
+	"github.com/Sberex/go-sberex/p2p"
+	"github.com/Sberex/go-sberex/p2p/discover"
+	"github.com/Sberex/go-sberex/params"
+	"github.com/Sberex/go-sberex/rlp"
 )
 
 const (
@@ -52,7 +52,7 @@ const (
 )
 
 var (
-	daoChallengeTimeout = 15 * time.Second // Time allowance for a node to reply to the DAO handshake challenge
+	daoChallengeTimeout = 30 * time.Second // Time allowance for a node to reply to the DAO handshake challenge
 )
 
 // errIncompatibleConfig is returned if the requested protocols and configs are
