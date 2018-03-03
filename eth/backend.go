@@ -1,20 +1,15 @@
-// Copyright 2014 The go-ethereum Authors
-// This file is part of the go-ethereum library.
+// This file is part of the go-sberex library. The go-sberex library is 
+// free software: you can redistribute it and/or modify it under the terms 
+// of the GNU Lesser General Public License as published by the Free 
+// Software Foundation, either version 3 of the License, or (at your option)
+// any later version.
 //
-// The go-ethereum library is free software: you can redistribute it and/or modify
-// it under the terms of the GNU Lesser General Public License as published by
-// the Free Software Foundation, either version 3 of the License, or
-// (at your option) any later version.
-//
-// The go-ethereum library is distributed in the hope that it will be useful,
+// The go-sberex library is distributed in the hope that it will be useful, 
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-// GNU Lesser General Public License for more details.
-//
-// You should have received a copy of the GNU Lesser General Public License
-// along with the go-ethereum library. If not, see <http://www.gnu.org/licenses/>.
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser 
+// General Public License <http://www.gnu.org/licenses/> for more details.
 
-// Package eth implements the Ethereum protocol.
+// Package eth implements the Sberex protocol.
 package eth
 
 import (
@@ -25,29 +20,29 @@ import (
 	"sync"
 	"sync/atomic"
 
-	"github.com/ethereum/go-ethereum/accounts"
-	"github.com/ethereum/go-ethereum/common"
-	"github.com/ethereum/go-ethereum/common/hexutil"
-	"github.com/ethereum/go-ethereum/consensus"
-	"github.com/ethereum/go-ethereum/consensus/clique"
-	"github.com/ethereum/go-ethereum/consensus/ethash"
-	"github.com/ethereum/go-ethereum/core"
-	"github.com/ethereum/go-ethereum/core/bloombits"
-	"github.com/ethereum/go-ethereum/core/types"
-	"github.com/ethereum/go-ethereum/core/vm"
-	"github.com/ethereum/go-ethereum/eth/downloader"
-	"github.com/ethereum/go-ethereum/eth/filters"
-	"github.com/ethereum/go-ethereum/eth/gasprice"
-	"github.com/ethereum/go-ethereum/ethdb"
-	"github.com/ethereum/go-ethereum/event"
-	"github.com/ethereum/go-ethereum/internal/ethapi"
-	"github.com/ethereum/go-ethereum/log"
-	"github.com/ethereum/go-ethereum/miner"
-	"github.com/ethereum/go-ethereum/node"
-	"github.com/ethereum/go-ethereum/p2p"
-	"github.com/ethereum/go-ethereum/params"
-	"github.com/ethereum/go-ethereum/rlp"
-	"github.com/ethereum/go-ethereum/rpc"
+	"github.com/Sberex/go-sberex/accounts"
+	"github.com/Sberex/go-sberex/common"
+	"github.com/Sberex/go-sberex/common/hexutil"
+	"github.com/Sberex/go-sberex/consensus"
+	"github.com/Sberex/go-sberex/consensus/clique"
+	"github.com/Sberex/go-sberex/consensus/ethash"
+	"github.com/Sberex/go-sberex/core"
+	"github.com/Sberex/go-sberex/core/bloombits"
+	"github.com/Sberex/go-sberex/core/types"
+	"github.com/Sberex/go-sberex/core/vm"
+	"github.com/Sberex/go-sberex/eth/downloader"
+	"github.com/Sberex/go-sberex/eth/filters"
+	"github.com/Sberex/go-sberex/eth/gasprice"
+	"github.com/Sberex/go-sberex/ethdb"
+	"github.com/Sberex/go-sberex/event"
+	"github.com/Sberex/go-sberex/internal/ethapi"
+	"github.com/Sberex/go-sberex/log"
+	"github.com/Sberex/go-sberex/miner"
+	"github.com/Sberex/go-sberex/node"
+	"github.com/Sberex/go-sberex/p2p"
+	"github.com/Sberex/go-sberex/params"
+	"github.com/Sberex/go-sberex/rlp"
+	"github.com/Sberex/go-sberex/rpc"
 )
 
 type LesServer interface {
@@ -57,7 +52,7 @@ type LesServer interface {
 	SetBloomBitsIndexer(bbIndexer *core.ChainIndexer)
 }
 
-// Ethereum implements the Ethereum full node service.
+// Sberex implements the Sberex full node service.
 type Ethereum struct {
 	config      *Config
 	chainConfig *params.ChainConfig
@@ -99,7 +94,7 @@ func (s *Ethereum) AddLesServer(ls LesServer) {
 	ls.SetBloomBitsIndexer(s.bloomIndexer)
 }
 
-// New creates a new Ethereum object (including the
+// New creates a new Sberex object (including the
 // initialisation of the common Ethereum object)
 func New(ctx *node.ServiceContext, config *Config) (*Ethereum, error) {
 	if config.SyncMode == downloader.LightSync {
@@ -135,7 +130,7 @@ func New(ctx *node.ServiceContext, config *Config) (*Ethereum, error) {
 		bloomIndexer:   NewBloomIndexer(chainDb, params.BloomBitsBlocks),
 	}
 
-	log.Info("Initialising Ethereum protocol", "versions", ProtocolVersions, "network", config.NetworkId)
+	log.Info("Initialising Sberex protocol", "versions", ProtocolVersions, "network", config.NetworkId)
 
 	if !config.SkipBcVersionCheck {
 		bcVersion := core.GetBlockChainVersion(chainDb)
@@ -210,7 +205,7 @@ func CreateDB(ctx *node.ServiceContext, config *Config, name string) (ethdb.Data
 	return db, nil
 }
 
-// CreateConsensusEngine creates the required type of consensus engine instance for an Ethereum service
+// CreateConsensusEngine creates the required type of consensus engine instance for an Sberex service
 func CreateConsensusEngine(ctx *node.ServiceContext, config *ethash.Config, chainConfig *params.ChainConfig, db ethdb.Database) consensus.Engine {
 	// If proof-of-authority is requested, set it up
 	if chainConfig.Clique != nil {
@@ -241,7 +236,7 @@ func CreateConsensusEngine(ctx *node.ServiceContext, config *ethash.Config, chai
 	}
 }
 
-// APIs returns the collection of RPC services the ethereum package offers.
+// APIs returns the collection of RPC services the sberex package offers.
 // NOTE, some of these services probably need to be moved to somewhere else.
 func (s *Ethereum) APIs() []rpc.API {
 	apis := ethapi.GetAPIs(s.ApiBackend)
@@ -409,7 +404,7 @@ func (s *Ethereum) Start(srvr *p2p.Server) error {
 }
 
 // Stop implements node.Service, terminating all internal goroutines used by the
-// Ethereum protocol.
+// Sberex protocol.
 func (s *Ethereum) Stop() error {
 	if s.stopDbUpgrade != nil {
 		s.stopDbUpgrade()
