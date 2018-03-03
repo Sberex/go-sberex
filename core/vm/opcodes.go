@@ -15,7 +15,7 @@ import (
 	"fmt"
 )
 
-// OpCode is an VM opcode
+// OpCode is an EVM opcode
 type OpCode byte
 
 func (op OpCode) IsPush() bool {
