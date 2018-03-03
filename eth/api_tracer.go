@@ -1,18 +1,13 @@
-// Copyright 2017 The go-ethereum Authors
-// This file is part of the go-ethereum library.
+// This file is part of the go-sberex library. The go-sberex library is 
+// free software: you can redistribute it and/or modify it under the terms 
+// of the GNU Lesser General Public License as published by the Free 
+// Software Foundation, either version 3 of the License, or (at your option)
+// any later version.
 //
-// The go-ethereum library is free software: you can redistribute it and/or modify
-// it under the terms of the GNU Lesser General Public License as published by
-// the Free Software Foundation, either version 3 of the License, or
-// (at your option) any later version.
-//
-// The go-ethereum library is distributed in the hope that it will be useful,
+// The go-sberex library is distributed in the hope that it will be useful, 
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-// GNU Lesser General Public License for more details.
-//
-// You should have received a copy of the GNU Lesser General Public License
-// along with the go-ethereum library. If not, see <http://www.gnu.org/licenses/>.
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser 
+// General Public License <http://www.gnu.org/licenses/> for more details.
 
 package eth
 
@@ -26,18 +21,18 @@ import (
 	"sync"
 	"time"
 
-	"github.com/ethereum/go-ethereum/common"
-	"github.com/ethereum/go-ethereum/common/hexutil"
-	"github.com/ethereum/go-ethereum/core"
-	"github.com/ethereum/go-ethereum/core/state"
-	"github.com/ethereum/go-ethereum/core/types"
-	"github.com/ethereum/go-ethereum/core/vm"
-	"github.com/ethereum/go-ethereum/eth/tracers"
-	"github.com/ethereum/go-ethereum/internal/ethapi"
-	"github.com/ethereum/go-ethereum/log"
-	"github.com/ethereum/go-ethereum/rlp"
-	"github.com/ethereum/go-ethereum/rpc"
-	"github.com/ethereum/go-ethereum/trie"
+	"github.com/Sberex/go-sberex/common"
+	"github.com/Sberex/go-sberex/common/hexutil"
+	"github.com/Sberex/go-sberex/core"
+	"github.com/Sberex/go-sberex/core/state"
+	"github.com/Sberex/go-sberex/core/types"
+	"github.com/Sberex/go-sberex/core/vm"
+	"github.com/Sberex/go-sberex/eth/tracers"
+	"github.com/Sberex/go-sberex/internal/ethapi"
+	"github.com/Sberex/go-sberex/log"
+	"github.com/Sberex/go-sberex/rlp"
+	"github.com/Sberex/go-sberex/rpc"
+	"github.com/Sberex/go-sberex/trie"
 )
 
 const (
