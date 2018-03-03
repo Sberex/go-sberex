@@ -18,7 +18,7 @@ import (
 	"github.com/Sberex/go-sberex/core/types"
 )
 
-// StateDB is an VM database for full state querying.
+// StateDB is an EVM database for full state querying.
 type StateDB interface {
 	CreateAccount(common.Address)
 
@@ -59,8 +59,8 @@ type StateDB interface {
 	ForEachStorage(common.Address, func(common.Hash, common.Hash) bool)
 }
 
-// CallContext provides a basic interface for the EVM calling conventions. The VM
-// depends on this context being implemented for doing subcalls and initialising new VM contracts.
+// CallContext provides a basic interface for the EVM calling conventions. The EVM
+// depends on this context being implemented for doing subcalls and initialising new EVM contracts.
 type CallContext interface {
 	// Call another contract
 	Call(env *EVM, me ContractRef, addr common.Address, data []byte, gas, value *big.Int) ([]byte, error)
