@@ -19,7 +19,7 @@ import (
 	"github.com/Sberex/go-sberex/core/vm"
 )
 
-// Iterator for disassembled VM instructions
+// Iterator for disassembled EVM instructions
 type instructionIterator struct {
 	code    []byte
 	pc      uint64
