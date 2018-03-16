@@ -1,18 +1,13 @@
-// Copyright 2016 The go-ethereum Authors
-// This file is part of the go-ethereum library.
+// This file is part of the go-sberex library. The go-sberex library is 
+// free software: you can redistribute it and/or modify it under the terms 
+// of the GNU Lesser General Public License as published by the Free 
+// Software Foundation, either version 3 of the License, or (at your option)
+// any later version.
 //
-// The go-ethereum library is free software: you can redistribute it and/or modify
-// it under the terms of the GNU Lesser General Public License as published by
-// the Free Software Foundation, either version 3 of the License, or
-// (at your option) any later version.
-//
-// The go-ethereum library is distributed in the hope that it will be useful,
+// The go-sberex library is distributed in the hope that it will be useful, 
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-// GNU Lesser General Public License for more details.
-//
-// You should have received a copy of the GNU Lesser General Public License
-// along with the go-ethereum library. If not, see <http://www.gnu.org/licenses/>.
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser 
+// General Public License <http://www.gnu.org/licenses/> for more details.
 
 package http
 
@@ -20,17 +15,17 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/ethereum/go-ethereum/log"
+	"github.com/Sberex/go-sberex/log"
 )
 
 /*
 http roundtripper to register for bzz url scheme
-see https://github.com/ethereum/go-ethereum/issues/2040
+see https://github.com/Sberex/go-sberex/issues/2040
 Usage:
 
 import (
- "github.com/ethereum/go-ethereum/common/httpclient"
- "github.com/ethereum/go-ethereum/swarm/api/http"
+ "github.com/Sberex/go-sberex/common/httpclient"
+ "github.com/Sberex/go-sberex/swarm/api/http"
 )
 client := httpclient.New()
 // for (private) swarm proxy running locally
