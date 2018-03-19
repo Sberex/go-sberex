@@ -1,21 +1,15 @@
-## Go Ethereum
+## Go Sberex
 
-Official golang implementation of the Ethereum protocol.
+Official golang implementation of the Sberex based on Ethereum protocol.
 
 [![API Reference](
 https://camo.githubusercontent.com/915b7be44ada53c290eb157634330494ebe3e30a/68747470733a2f2f676f646f632e6f72672f6769746875622e636f6d2f676f6c616e672f6764646f3f7374617475732e737667
-)](https://godoc.org/github.com/ethereum/go-ethereum)
-[![Go Report Card](https://goreportcard.com/badge/github.com/ethereum/go-ethereum)](https://goreportcard.com/report/github.com/ethereum/go-ethereum)
-[![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/ethereum/go-ethereum?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
+)](https://godoc.org/github.com/Sberex/go-sberex)
+[![Go Report Card](https://goreportcard.com/badge/github.com/Sberex/go-sberex)](https://goreportcard.com/report/github.com/Sberex/go-sberex)
+[![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/Sberex/go-sberex?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
-Automated builds are available for stable releases and the unstable master branch.
-Binary archives are published at https://geth.ethereum.org/downloads/.
 
 ## Building the source
-
-For prerequisites and detailed build instructions please read the
-[Installation Instructions](https://github.com/ethereum/go-ethereum/wiki/Building-Ethereum)
-on the wiki.
 
 Building geth requires both a Go (version 1.7 or later) and a C compiler.
 You can install them using your favourite package manager.
@@ -29,12 +23,12 @@ or, to build the full suite of utilities:
 
 ## Executables
 
-The go-ethereum project comes with several wrappers/executables found in the `cmd` directory.
+The go-sberex project comes with several wrappers/executables found in the `cmd` directory.
 
 | Command    | Description |
 |:----------:|-------------|
-| **`geth`** | Our main Ethereum CLI client. It is the entry point into the Ethereum network (main-, test- or private net), capable of running as a full node (default) archive node (retaining all historical state) or a light node (retrieving data live). It can be used by other processes as a gateway into the Ethereum network via JSON RPC endpoints exposed on top of HTTP, WebSocket and/or IPC transports. `geth --help` and the [CLI Wiki page](https://github.com/ethereum/go-ethereum/wiki/Command-Line-Options) for command line options. |
-| `abigen` | Source code generator to convert Ethereum contract definitions into easy to use, compile-time type-safe Go packages. It operates on plain [Ethereum contract ABIs](https://github.com/ethereum/wiki/wiki/Ethereum-Contract-ABI) with expanded functionality if the contract bytecode is also available. However it also accepts Solidity source files, making development much more streamlined. Please see our [Native DApps](https://github.com/ethereum/go-ethereum/wiki/Native-DApps:-Go-bindings-to-Ethereum-contracts) wiki page for details. |
+| **`geth`** | Our main Sberex CLI client. It is the entry point into the Sberex network (main-, test- or private net), capable of running as a full node (default) archive node (retaining all historical state) or a light node (retrieving data live). It can be used by other processes as a gateway into the Sberex network via JSON RPC endpoints exposed on top of HTTP, WebSocket and/or IPC transports. `geth --help` and the [CLI Wiki page](https://github.com/ethereum/go-ethereum/wiki/Command-Line-Options) for command line options. |
+| `abigen` | Source code generator to convert Sberex contract definitions into easy to use, compile-time type-safe Go packages. It operates on plain [Ethereum contract ABIs](https://github.com/ethereum/wiki/wiki/Ethereum-Contract-ABI) with expanded functionality if the contract bytecode is also available. However it also accepts Solidity source files, making development much more streamlined. Please see our [Native DApps](https://github.com/ethereum/go-ethereum/wiki/Native-DApps:-Go-bindings-to-Ethereum-contracts) wiki page for details. |
 | `bootnode` | Stripped down version of our Ethereum client implementation that only takes part in the network node discovery protocol, but does not run any of the higher level application protocols. It can be used as a lightweight bootstrap node to aid in finding peers in private networks. |
 | `evm` | Developer utility version of the EVM (Ethereum Virtual Machine) that is capable of running bytecode snippets within a configurable environment and execution mode. Its purpose is to allow isolated, fine-grained debugging of EVM opcodes (e.g. `evm --code 60ff60ff --debug`). |
 | `gethrpctest` | Developer utility tool to support our [ethereum/rpc-test](https://github.com/ethereum/rpc-tests) test suite which validates baseline conformity to the [Ethereum JSON RPC](https://github.com/ethereum/wiki/wiki/JSON-RPC) specs. Please see the [test suite's readme](https://github.com/ethereum/rpc-tests/blob/master/README.md) for details. |
@@ -49,9 +43,9 @@ Going through all the possible command line flags is out of scope here (please c
 enumerated a few common parameter combos to get you up to speed quickly on how you can run your
 own Geth instance.
 
-### Full node on the main Ethereum network
+### Full node on the main Sberex network
 
-By far the most common scenario is people wanting to simply interact with the Ethereum network:
+By far the most common scenario is people wanting to simply interact with the Sberex network:
 create accounts; transfer funds; deploy and interact with contracts. For this particular use-case
 the user doesn't care about years-old historical data, so we can fast-sync quickly to the current
 state of the network. To do so:
