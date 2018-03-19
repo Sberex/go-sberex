@@ -147,12 +147,12 @@ func NewNode(datadir string, config *NodeConfig) (stack *Node, _ error) {
 		if err := rawStack.Register(func(ctx *node.ServiceContext) (node.Service, error) {
 			return les.New(ctx, &ethConf)
 		}); err != nil {
-			return nil, fmt.Errorf("ethereum init: %v", err)
+			return nil, fmt.Errorf("sberex init: %v", err)
 		}
 		// If netstats reporting is requested, do it
-		if config.EthereumNetStats != "" {
+		if config.SberexNetStats != "" {
 			if err := rawStack.Register(func(ctx *node.ServiceContext) (node.Service, error) {
-				var lesServ *les.LightEthereum
+				var lesServ *les.LightSberex
 				ctx.Service(&lesServ)
 
 				return ethstats.New(config.SberexNetStats, nil, lesServ)
