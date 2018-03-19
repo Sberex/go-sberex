@@ -54,7 +54,7 @@ matrix:
       env:
         - lint
       git:
-        submodules: false # avoid cloning ethereum/tests
+        submodules: false # avoid cloning Sberex/tests
       script:
         - go run build/ci.go lint
 
@@ -67,7 +67,7 @@ matrix:
         - ubuntu-ppa
         - azure-linux
       git:
-        submodules: false # avoid cloning ethereum/tests
+        submodules: false # avoid cloning Sberex/tests
       addons:
         apt:
           packages:
