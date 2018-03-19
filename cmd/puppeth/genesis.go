@@ -129,26 +129,26 @@ func newCppSberexGenesisSpec(network string, genesis *core.Genesis) (*cppSberexG
 		}
 	}
 	spec.Accounts[common.BytesToAddress([]byte{1})].Precompiled = &cppSberexGenesisSpecBuiltin{
-		Name: "ecrecover", Linear: &cppEthereumGenesisSpecLinearPricing{Base: 3000},
+		Name: "ecrecover", Linear: &cppSberexGenesisSpecLinearPricing{Base: 3000},
 	}
 	spec.Accounts[common.BytesToAddress([]byte{2})].Precompiled = &cppSberexGenesisSpecBuiltin{
-		Name: "sha256", Linear: &cppEthereumGenesisSpecLinearPricing{Base: 60, Word: 12},
+		Name: "sha256", Linear: &cppSberexGenesisSpecLinearPricing{Base: 60, Word: 12},
 	}
 	spec.Accounts[common.BytesToAddress([]byte{3})].Precompiled = &cppSberexGenesisSpecBuiltin{
-		Name: "ripemd160", Linear: &cppEthereumGenesisSpecLinearPricing{Base: 600, Word: 120},
+		Name: "ripemd160", Linear: &cppSberexGenesisSpecLinearPricing{Base: 600, Word: 120},
 	}
 	spec.Accounts[common.BytesToAddress([]byte{4})].Precompiled = &cppSberexGenesisSpecBuiltin{
-		Name: "identity", Linear: &cppEthereumGenesisSpecLinearPricing{Base: 15, Word: 3},
+		Name: "identity", Linear: &cppSberexGenesisSpecLinearPricing{Base: 15, Word: 3},
 	}
 	if genesis.Config.ByzantiumBlock != nil {
 		spec.Accounts[common.BytesToAddress([]byte{5})].Precompiled = &cppSberexGenesisSpecBuiltin{
 			Name: "modexp", StartingBlock: (hexutil.Uint64)(genesis.Config.ByzantiumBlock.Uint64()),
 		}
 		spec.Accounts[common.BytesToAddress([]byte{6})].Precompiled = &cppSberexGenesisSpecBuiltin{
-			Name: "alt_bn128_G1_add", StartingBlock: (hexutil.Uint64)(genesis.Config.ByzantiumBlock.Uint64()), Linear: &cppEthereumGenesisSpecLinearPricing{Base: 500},
+			Name: "alt_bn128_G1_add", StartingBlock: (hexutil.Uint64)(genesis.Config.ByzantiumBlock.Uint64()), Linear: &cppSberexGenesisSpecLinearPricing{Base: 500},
 		}
 		spec.Accounts[common.BytesToAddress([]byte{7})].Precompiled = &cppSberexGenesisSpecBuiltin{
-			Name: "alt_bn128_G1_mul", StartingBlock: (hexutil.Uint64)(genesis.Config.ByzantiumBlock.Uint64()), Linear: &cppEthereumGenesisSpecLinearPricing{Base: 40000},
+			Name: "alt_bn128_G1_mul", StartingBlock: (hexutil.Uint64)(genesis.Config.ByzantiumBlock.Uint64()), Linear: &cppSberexGenesisSpecLinearPricing{Base: 40000},
 		}
 		spec.Accounts[common.BytesToAddress([]byte{8})].Precompiled = &cppSberexGenesisSpecBuiltin{
 			Name: "alt_bn128_pairing_product", StartingBlock: (hexutil.Uint64)(genesis.Config.ByzantiumBlock.Uint64()),
@@ -196,7 +196,7 @@ type parityChainSpec struct {
 
 	Genesis struct {
 		Seal struct {
-			Ethereum struct {
+			Sberex struct {
 				Nonce   hexutil.Bytes `json:"nonce"`
 				MixHash hexutil.Bytes `json:"mixHash"`
 			} `json:"sberex"`
