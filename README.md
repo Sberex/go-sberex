@@ -1,6 +1,6 @@
 ## Go Sberex
 
-Official golang implementation of the Sberex project based on Ethereum protocol.
+Official golang implementation of the Sberex Project based on Ethereum protocol.
 
 [![API Reference](
 https://camo.githubusercontent.com/915b7be44ada53c290eb157634330494ebe3e30a/68747470733a2f2f676f646f632e6f72672f6769746875622e636f6d2f676f6c616e672f6764646f3f7374617475732e737667
@@ -57,18 +57,18 @@ This command will:
  * Start geth in fast sync mode (default, can be changed with the `--syncmode` flag), causing it to
    download more data in exchange for avoiding processing the entire history of the Ethereum network,
    which is very CPU intensive.
- * Start up Geth's built-in interactive [JavaScript console](https://github.com/ethereum/go-ethereum/wiki/JavaScript-Console),
-   (via the trailing `console` subcommand) through which you can invoke all official [`web3` methods](https://github.com/ethereum/wiki/wiki/JavaScript-API)
-   as well as Geth's own [management APIs](https://github.com/ethereum/go-ethereum/wiki/Management-APIs).
+ * Start up Geth's built-in interactive JavaScript console,
+   (via the trailing `console` subcommand) through which you can invoke all official `web3` methods
+   as well as Geth's own management APIs.
    This too is optional and if you leave it out you can always attach to an already running Geth instance
    with `geth attach`.
 
-### Full node on the Ethereum test network
+### Full node on the Sberex test network
 
-Transitioning towards developers, if you'd like to play around with creating Ethereum contracts, you
+Transitioning towards developers, if you'd like to play around with creating Sberex contracts, you
 almost certainly would like to do that without any real money involved until you get the hang of the
 entire system. In other words, instead of attaching to the main network, you want to join the **test**
-network with your node, which is fully equivalent to the main network, but with play-Ether only.
+network with your node, which is fully equivalent to the main network, but with play-Sbr only.
 
 ```
 $ geth --testnet console
@@ -79,26 +79,18 @@ testnet too. Please see above for their explanations if you've skipped to here.
 
 Specifying the `--testnet` flag however will reconfigure your Geth instance a bit:
 
- * Instead of using the default data directory (`~/.ethereum` on Linux for example), Geth will nest
-   itself one level deeper into a `testnet` subfolder (`~/.ethereum/testnet` on Linux). Note, on OSX
+ * Instead of using the default data directory (`~/.sberex` on Linux for example), Geth will nest
+   itself one level deeper into a `testnet` subfolder (`~/.sberex/testnet` on Linux). Note, on OSX
    and Linux this also means that attaching to a running testnet node requires the use of a custom
    endpoint since `geth attach` will try to attach to a production node endpoint by default. E.g.
    `geth attach <datadir>/testnet/geth.ipc`. Windows users are not affected by this.
- * Instead of connecting the main Ethereum network, the client will connect to the test network,
+ * Instead of connecting the main Sberex network, the client will connect to the test network,
    which uses different P2P bootnodes, different network IDs and genesis states.
    
 *Note: Although there are some internal protective measures to prevent transactions from crossing
 over between the main network and test network, you should make sure to always use separate accounts
 for play-money and real-money. Unless you manually move accounts, Geth will by default correctly
 separate the two networks and will not make any accounts available between them.*
-
-### Full node on the Rinkeby test network
-
-The above test network is a cross client one based on the ethash proof-of-work consensus algorithm. As such, it has certain extra overhead and is more susceptible to reorganization attacks due to the network's low difficulty / security. Go Ethereum also supports connecting to a proof-of-authority based test network called [*Rinkeby*](https://www.rinkeby.io) (operated by members of the community). This network is lighter, more secure, but is only supported by go-ethereum.
-
-```
-$ geth --rinkeby console
-```
 
 ### Configuration
 
@@ -118,12 +110,12 @@ $ geth --your-favourite-flags dumpconfig
 
 #### Docker quick start
 
-One of the quickest ways to get Ethereum up and running on your machine is by using Docker:
+One of the quickest ways to get Sberex up and running on your machine is by using Docker:
 
 ```
-docker run -d --name ethereum-node -v /Users/alice/ethereum:/root \
+docker run -d --name sberex-node -v /Users/alice/sberex:/root \
            -p 8545:8545 -p 30303:30303 \
-           ethereum/client-go
+           sberex/client-go
 ```
 
 This will start geth in fast-sync mode with a DB memory allowance of 1GB just as the above command does.  It will also create a persistent volume in your home directory for saving your blockchain as well as map the default ports. There is also an `alpine` tag available for a slim version of the image.
@@ -132,11 +124,10 @@ Do not forget `--rpcaddr 0.0.0.0`, if you want to access RPC from other containe
 
 ### Programatically interfacing Geth nodes
 
-As a developer, sooner rather than later you'll want to start interacting with Geth and the Ethereum
+As a developer, sooner rather than later you'll want to start interacting with Geth and the Sberex
 network via your own programs and not manually through the console. To aid this, Geth has built in
-support for a JSON-RPC based APIs ([standard APIs](https://github.com/ethereum/wiki/wiki/JSON-RPC) and
-[Geth specific APIs](https://github.com/ethereum/go-ethereum/wiki/Management-APIs)). These can be
-exposed via HTTP, WebSockets and IPC (unix sockets on unix based platforms, and named pipes on Windows).
+support for a JSON-RPC based APIs (standard APIs and Geth specific APIs). These can be exposed via 
+HTTP, WebSockets and IPC (unix sockets on unix based platforms, and named pipes on Windows).
 
 The IPC interface is enabled by default and exposes all the APIs supported by Geth, whereas the HTTP
 and WS interfaces need to manually be enabled and only expose a subset of APIs due to security reasons.
@@ -163,7 +154,7 @@ via HTTP, WS or IPC to a Geth node configured with the above flags and you'll ne
 on all transports. You can reuse the same connection for multiple requests!
 
 **Note: Please understand the security implications of opening up an HTTP/WS based transport before
-doing so! Hackers on the internet are actively trying to subvert Ethereum nodes with exposed APIs!
+doing so! Hackers on the internet are actively trying to subvert Sberex nodes with exposed APIs!
 Further, all browser tabs can access locally running webservers, so malicious webpages could try to
 subvert locally available APIs!**
 
@@ -227,7 +218,7 @@ $ bootnode --genkey=boot.key
 $ bootnode --nodekey=boot.key
 ```
 
-With the bootnode online, it will display an [`enode` URL](https://github.com/ethereum/wiki/wiki/enode-url-format)
+With the bootnode online, it will display an `enode` 
 that other nodes can use to connect to it and exchange peer information. Make sure to replace the
 displayed IP address information (most probably `[::]`) with your externally accessible IP to get the
 actual `enode` URL.
@@ -250,7 +241,7 @@ need to configure a miner to process transactions and create new blocks for you.
 
 #### Running a private miner
 
-Mining on the public Ethereum network is a complex task as it's only feasible using GPUs, requiring
+Mining on the public Sberex network is a complex task as it's only feasible using GPUs, requiring
 an OpenCL or CUDA enabled `ethminer` instance. For information on such a setup, please consult the
 [EtherMining subreddit](https://www.reddit.com/r/EtherMining/) and the [Genoil miner](https://github.com/Genoil/cpp-ethereum)
 repository.
@@ -273,13 +264,6 @@ limit blocks converge to (`--targetgaslimit`) and the price transactions are acc
 Thank you for considering to help out with the source code! We welcome contributions from
 anyone on the internet, and are grateful for even the smallest of fixes!
 
-If you'd like to contribute to go-ethereum, please fork, fix, commit and send a pull request
-for the maintainers to review and merge into the main code base. If you wish to submit more
-complex changes though, please check up with the core devs first on [our gitter channel](https://gitter.im/ethereum/go-ethereum)
-to ensure those changes are in line with the general philosophy of the project and/or get some
-early feedback which can make both your efforts much lighter as well as our review and merge
-procedures quick and simple.
-
 Please make sure your contributions adhere to our coding guidelines:
 
  * Code must adhere to the official Go [formatting](https://golang.org/doc/effective_go.html#formatting) guidelines (i.e. uses [gofmt](https://golang.org/cmd/gofmt/)).
@@ -287,9 +271,6 @@ Please make sure your contributions adhere to our coding guidelines:
  * Pull requests need to be based on and opened against the `master` branch.
  * Commit messages should be prefixed with the package(s) they modify.
    * E.g. "eth, rpc: make trace configs optional"
-
-Please see the [Developers' Guide](https://github.com/ethereum/go-ethereum/wiki/Developers'-Guide)
-for more details on configuring your environment, managing project dependencies and testing procedures.
 
 ## License
 
