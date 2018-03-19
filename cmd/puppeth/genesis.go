@@ -290,7 +290,7 @@ func newParityChainSpec(network string, genesis *core.Genesis, bootnodes []strin
 	spec.Params.EIP658Transition = genesis.Config.ByzantiumBlock.Uint64()
 
 	spec.Genesis.Seal.Sberex.Nonce = (hexutil.Bytes)(make([]byte, 8))
-	binary.LittleEndian.PutUint64(spec.Genesis.Seal.Ethereum.Nonce[:], genesis.Nonce)
+	binary.LittleEndian.PutUint64(spec.Genesis.Seal.Sberex.Nonce[:], genesis.Nonce)
 
 	spec.Genesis.Seal.Sberex.MixHash = (hexutil.Bytes)(genesis.Mixhash[:])
 	spec.Genesis.Difficulty = (*hexutil.Big)(genesis.Difficulty)
@@ -353,7 +353,7 @@ type pySberexGenesisSpec struct {
 // newPySberexGenesisSpec converts a go-sberex genesis block into a Parity specific
 // chain specification format.
 func newPySberexGenesisSpec(network string, genesis *core.Genesis) (*pySberexGenesisSpec, error) {
-	// Only ethash is currently supported between go-ethereum and pysberex
+	// Only ethash is currently supported between go-sberex and pysberex
 	if genesis.Config.Ethash == nil {
 		return nil, errors.New("unsupported consensus engine")
 	}
