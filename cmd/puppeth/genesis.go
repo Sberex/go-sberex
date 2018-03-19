@@ -23,8 +23,8 @@ import (
 	"github.com/Sberex/go-sberex/params"
 )
 
-// cppEthereumGenesisSpec represents the genesis specification format used by the
-// C++ Ethereum implementation.
+// cppSberexGenesisSpec represents the genesis specification format used by the
+// C++ Sberex implementation.
 type cppEthereumGenesisSpec struct {
 	SealEngine string `json:"sealEngine"`
 	Params     struct {
@@ -57,38 +57,38 @@ type cppEthereumGenesisSpec struct {
 		GasLimit   hexutil.Uint64 `json:"gasLimit"`
 	} `json:"genesis"`
 
-	Accounts map[common.Address]*cppEthereumGenesisSpecAccount `json:"accounts"`
+	Accounts map[common.Address]*cppSberexGenesisSpecAccount `json:"accounts"`
 }
 
-// cppEthereumGenesisSpecAccount is the prefunded genesis account and/or precompiled
+// cppSberexGenesisSpecAccount is the prefunded genesis account and/or precompiled
 // contract definition.
-type cppEthereumGenesisSpecAccount struct {
+type cppSberexGenesisSpecAccount struct {
 	Balance     *hexutil.Big                   `json:"balance"`
 	Nonce       uint64                         `json:"nonce,omitempty"`
-	Precompiled *cppEthereumGenesisSpecBuiltin `json:"precompiled,omitempty"`
+	Precompiled *cppSberexGenesisSpecBuiltin `json:"precompiled,omitempty"`
 }
 
-// cppEthereumGenesisSpecBuiltin is the precompiled contract definition.
-type cppEthereumGenesisSpecBuiltin struct {
+// cppSberexGenesisSpecBuiltin is the precompiled contract definition.
+type cppSberexGenesisSpecBuiltin struct {
 	Name          string                               `json:"name,omitempty"`
 	StartingBlock hexutil.Uint64                       `json:"startingBlock,omitempty"`
-	Linear        *cppEthereumGenesisSpecLinearPricing `json:"linear,omitempty"`
+	Linear        *cppSberexGenesisSpecLinearPricing `json:"linear,omitempty"`
 }
 
-type cppEthereumGenesisSpecLinearPricing struct {
+type cppSberexGenesisSpecLinearPricing struct {
 	Base uint64 `json:"base"`
 	Word uint64 `json:"word"`
 }
 
-// newCppEthereumGenesisSpec converts a go-ethereum genesis block into a Parity specific
+// newCppSberexGenesisSpec converts a go-sberex genesis block into a Parity specific
 // chain specification format.
-func newCppEthereumGenesisSpec(network string, genesis *core.Genesis) (*cppEthereumGenesisSpec, error) {
-	// Only ethash is currently supported between go-ethereum and cpp-ethereum
+func newCppSberexGenesisSpec(network string, genesis *core.Genesis) (*cppSberexGenesisSpec, error) {
+	// Only ethash is currently supported between go-sberex and cpp-sberex
 	if genesis.Config.Ethash == nil {
 		return nil, errors.New("unsupported consensus engine")
 	}
 	// Reconstruct the chain spec in Parity's format
-	spec := &cppEthereumGenesisSpec{
+	spec := &cppSberexGenesisSpec{
 		SealEngine: "Ethash",
 	}
 	spec.Params.AccountStartNonce = 0
@@ -121,36 +121,36 @@ func newCppEthereumGenesisSpec(network string, genesis *core.Genesis) (*cppEther
 	spec.Genesis.ExtraData = (hexutil.Bytes)(genesis.ExtraData)
 	spec.Genesis.GasLimit = (hexutil.Uint64)(genesis.GasLimit)
 
-	spec.Accounts = make(map[common.Address]*cppEthereumGenesisSpecAccount)
+	spec.Accounts = make(map[common.Address]*cppSberexGenesisSpecAccount)
 	for address, account := range genesis.Alloc {
-		spec.Accounts[address] = &cppEthereumGenesisSpecAccount{
+		spec.Accounts[address] = &cppSberexGenesisSpecAccount{
 			Balance: (*hexutil.Big)(account.Balance),
 			Nonce:   account.Nonce,
 		}
 	}
-	spec.Accounts[common.BytesToAddress([]byte{1})].Precompiled = &cppEthereumGenesisSpecBuiltin{
+	spec.Accounts[common.BytesToAddress([]byte{1})].Precompiled = &cppSberexGenesisSpecBuiltin{
 		Name: "ecrecover", Linear: &cppEthereumGenesisSpecLinearPricing{Base: 3000},
 	}
-	spec.Accounts[common.BytesToAddress([]byte{2})].Precompiled = &cppEthereumGenesisSpecBuiltin{
+	spec.Accounts[common.BytesToAddress([]byte{2})].Precompiled = &cppSberexGenesisSpecBuiltin{
 		Name: "sha256", Linear: &cppEthereumGenesisSpecLinearPricing{Base: 60, Word: 12},
 	}
-	spec.Accounts[common.BytesToAddress([]byte{3})].Precompiled = &cppEthereumGenesisSpecBuiltin{
+	spec.Accounts[common.BytesToAddress([]byte{3})].Precompiled = &cppSberexGenesisSpecBuiltin{
 		Name: "ripemd160", Linear: &cppEthereumGenesisSpecLinearPricing{Base: 600, Word: 120},
 	}
-	spec.Accounts[common.BytesToAddress([]byte{4})].Precompiled = &cppEthereumGenesisSpecBuiltin{
+	spec.Accounts[common.BytesToAddress([]byte{4})].Precompiled = &cppSberexGenesisSpecBuiltin{
 		Name: "identity", Linear: &cppEthereumGenesisSpecLinearPricing{Base: 15, Word: 3},
 	}
 	if genesis.Config.ByzantiumBlock != nil {
-		spec.Accounts[common.BytesToAddress([]byte{5})].Precompiled = &cppEthereumGenesisSpecBuiltin{
+		spec.Accounts[common.BytesToAddress([]byte{5})].Precompiled = &cppSberexGenesisSpecBuiltin{
 			Name: "modexp", StartingBlock: (hexutil.Uint64)(genesis.Config.ByzantiumBlock.Uint64()),
 		}
-		spec.Accounts[common.BytesToAddress([]byte{6})].Precompiled = &cppEthereumGenesisSpecBuiltin{
+		spec.Accounts[common.BytesToAddress([]byte{6})].Precompiled = &cppSberexGenesisSpecBuiltin{
 			Name: "alt_bn128_G1_add", StartingBlock: (hexutil.Uint64)(genesis.Config.ByzantiumBlock.Uint64()), Linear: &cppEthereumGenesisSpecLinearPricing{Base: 500},
 		}
-		spec.Accounts[common.BytesToAddress([]byte{7})].Precompiled = &cppEthereumGenesisSpecBuiltin{
+		spec.Accounts[common.BytesToAddress([]byte{7})].Precompiled = &cppSberexGenesisSpecBuiltin{
 			Name: "alt_bn128_G1_mul", StartingBlock: (hexutil.Uint64)(genesis.Config.ByzantiumBlock.Uint64()), Linear: &cppEthereumGenesisSpecLinearPricing{Base: 40000},
 		}
-		spec.Accounts[common.BytesToAddress([]byte{8})].Precompiled = &cppEthereumGenesisSpecBuiltin{
+		spec.Accounts[common.BytesToAddress([]byte{8})].Precompiled = &cppSberexGenesisSpecBuiltin{
 			Name: "alt_bn128_pairing_product", StartingBlock: (hexutil.Uint64)(genesis.Config.ByzantiumBlock.Uint64()),
 		}
 	}
@@ -251,10 +251,10 @@ type parityChainSpecAltBnPairingPricing struct {
 	Pair uint64 `json:"pair"`
 }
 
-// newParityChainSpec converts a go-ethereum genesis block into a Parity specific
+// newParityChainSpec converts a go-sberex genesis block into a Parity specific
 // chain specification format.
 func newParityChainSpec(network string, genesis *core.Genesis, bootnodes []string) (*parityChainSpec, error) {
-	// Only ethash is currently supported between go-ethereum and Parity
+	// Only ethash is currently supported between go-sberex and Parity
 	if genesis.Config.Ethash == nil {
 		return nil, errors.New("unsupported consensus engine")
 	}
@@ -289,10 +289,10 @@ func newParityChainSpec(network string, genesis *core.Genesis, bootnodes []strin
 	spec.Params.EIP214Transition = genesis.Config.ByzantiumBlock.Uint64()
 	spec.Params.EIP658Transition = genesis.Config.ByzantiumBlock.Uint64()
 
-	spec.Genesis.Seal.Ethereum.Nonce = (hexutil.Bytes)(make([]byte, 8))
+	spec.Genesis.Seal.Sberex.Nonce = (hexutil.Bytes)(make([]byte, 8))
 	binary.LittleEndian.PutUint64(spec.Genesis.Seal.Ethereum.Nonce[:], genesis.Nonce)
 
-	spec.Genesis.Seal.Ethereum.MixHash = (hexutil.Bytes)(genesis.Mixhash[:])
+	spec.Genesis.Seal.Sberex.MixHash = (hexutil.Bytes)(genesis.Mixhash[:])
 	spec.Genesis.Difficulty = (*hexutil.Big)(genesis.Difficulty)
 	spec.Genesis.Author = genesis.Coinbase
 	spec.Genesis.Timestamp = (hexutil.Uint64)(genesis.Timestamp)
@@ -336,9 +336,9 @@ func newParityChainSpec(network string, genesis *core.Genesis, bootnodes []strin
 	return spec, nil
 }
 
-// pyEthereumGenesisSpec represents the genesis specification format used by the
-// Python Ethereum implementation.
-type pyEthereumGenesisSpec struct {
+// pySberexGenesisSpec represents the genesis specification format used by the
+// Python Sberex implementation.
+type pySberexGenesisSpec struct {
 	Nonce      hexutil.Bytes     `json:"nonce"`
 	Timestamp  hexutil.Uint64    `json:"timestamp"`
 	ExtraData  hexutil.Bytes     `json:"extraData"`
@@ -350,14 +350,14 @@ type pyEthereumGenesisSpec struct {
 	ParentHash common.Hash       `json:"parentHash"`
 }
 
-// newPyEthereumGenesisSpec converts a go-ethereum genesis block into a Parity specific
+// newPySberexGenesisSpec converts a go-sberex genesis block into a Parity specific
 // chain specification format.
-func newPyEthereumGenesisSpec(network string, genesis *core.Genesis) (*pyEthereumGenesisSpec, error) {
-	// Only ethash is currently supported between go-ethereum and pyethereum
+func newPySberexGenesisSpec(network string, genesis *core.Genesis) (*pySberexGenesisSpec, error) {
+	// Only ethash is currently supported between go-ethereum and pysberex
 	if genesis.Config.Ethash == nil {
 		return nil, errors.New("unsupported consensus engine")
 	}
-	spec := &pyEthereumGenesisSpec{
+	spec := &pySberexGenesisSpec{
 		Timestamp:  (hexutil.Uint64)(genesis.Timestamp),
 		ExtraData:  genesis.ExtraData,
 		GasLimit:   (hexutil.Uint64)(genesis.GasLimit),
