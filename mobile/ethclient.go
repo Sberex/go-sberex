@@ -20,26 +20,26 @@ import (
 	"github.com/Sberex/go-sberex/ethclient"
 )
 
-// EthereumClient provides access to the Ethereum APIs.
-type EthereumClient struct {
+// SberexClient provides access to the Sberex APIs.
+type SberexClient struct {
 	client *ethclient.Client
 }
 
-// NewEthereumClient connects a client to the given URL.
-func NewEthereumClient(rawurl string) (client *EthereumClient, _ error) {
+// NewSberexClient connects a client to the given URL.
+func NewSberexClient(rawurl string) (client *SberexClient, _ error) {
 	rawClient, err := ethclient.Dial(rawurl)
-	return &EthereumClient{rawClient}, err
+	return &SberexClient{rawClient}, err
 }
 
 // GetBlockByHash returns the given full block.
-func (ec *EthereumClient) GetBlockByHash(ctx *Context, hash *Hash) (block *Block, _ error) {
+func (ec *SberexClient) GetBlockByHash(ctx *Context, hash *Hash) (block *Block, _ error) {
 	rawBlock, err := ec.client.BlockByHash(ctx.context, hash.hash)
 	return &Block{rawBlock}, err
 }
 
 // GetBlockByNumber returns a block from the current canonical chain. If number is <0, the
 // latest known block is returned.
-func (ec *EthereumClient) GetBlockByNumber(ctx *Context, number int64) (block *Block, _ error) {
+func (ec *SberexClient) GetBlockByNumber(ctx *Context, number int64) (block *Block, _ error) {
 	if number < 0 {
 		rawBlock, err := ec.client.BlockByNumber(ctx.context, nil)
 		return &Block{rawBlock}, err
@@ -49,14 +49,14 @@ func (ec *EthereumClient) GetBlockByNumber(ctx *Context, number int64) (block *B
 }
 
 // GetHeaderByHash returns the block header with the given hash.
-func (ec *EthereumClient) GetHeaderByHash(ctx *Context, hash *Hash) (header *Header, _ error) {
+func (ec *SberexClient) GetHeaderByHash(ctx *Context, hash *Hash) (header *Header, _ error) {
 	rawHeader, err := ec.client.HeaderByHash(ctx.context, hash.hash)
 	return &Header{rawHeader}, err
 }
 
 // GetHeaderByNumber returns a block header from the current canonical chain. If number is <0,
 // the latest known header is returned.
-func (ec *EthereumClient) GetHeaderByNumber(ctx *Context, number int64) (header *Header, _ error) {
+func (ec *SberexClient) GetHeaderByNumber(ctx *Context, number int64) (header *Header, _ error) {
 	if number < 0 {
 		rawHeader, err := ec.client.HeaderByNumber(ctx.context, nil)
 		return &Header{rawHeader}, err
@@ -66,7 +66,7 @@ func (ec *EthereumClient) GetHeaderByNumber(ctx *Context, number int64) (header 
 }
 
 // GetTransactionByHash returns the transaction with the given hash.
-func (ec *EthereumClient) GetTransactionByHash(ctx *Context, hash *Hash) (tx *Transaction, _ error) {
+func (ec *SberexClient) GetTransactionByHash(ctx *Context, hash *Hash) (tx *Transaction, _ error) {
 	// TODO(karalabe): handle isPending
 	rawTx, _, err := ec.client.TransactionByHash(ctx.context, hash.hash)
 	return &Transaction{rawTx}, err
@@ -74,19 +74,19 @@ func (ec *EthereumClient) GetTransactionByHash(ctx *Context, hash *Hash) (tx *Tr
 
 // GetTransactionSender returns the sender address of a transaction. The transaction must
 // be included in blockchain at the given block and index.
-func (ec *EthereumClient) GetTransactionSender(ctx *Context, tx *Transaction, blockhash *Hash, index int) (sender *Address, _ error) {
+func (ec *SberexClient) GetTransactionSender(ctx *Context, tx *Transaction, blockhash *Hash, index int) (sender *Address, _ error) {
 	addr, err := ec.client.TransactionSender(ctx.context, tx.tx, blockhash.hash, uint(index))
 	return &Address{addr}, err
 }
 
 // GetTransactionCount returns the total number of transactions in the given block.
-func (ec *EthereumClient) GetTransactionCount(ctx *Context, hash *Hash) (count int, _ error) {
+func (ec *SberexClient) GetTransactionCount(ctx *Context, hash *Hash) (count int, _ error) {
 	rawCount, err := ec.client.TransactionCount(ctx.context, hash.hash)
 	return int(rawCount), err
 }
 
 // GetTransactionInBlock returns a single transaction at index in the given block.
-func (ec *EthereumClient) GetTransactionInBlock(ctx *Context, hash *Hash, index int) (tx *Transaction, _ error) {
+func (ec *SberexClient) GetTransactionInBlock(ctx *Context, hash *Hash, index int) (tx *Transaction, _ error) {
 	rawTx, err := ec.client.TransactionInBlock(ctx.context, hash.hash, uint(index))
 	return &Transaction{rawTx}, err
 
@@ -94,14 +94,14 @@ func (ec *EthereumClient) GetTransactionInBlock(ctx *Context, hash *Hash, index 
 
 // GetTransactionReceipt returns the receipt of a transaction by transaction hash.
 // Note that the receipt is not available for pending transactions.
-func (ec *EthereumClient) GetTransactionReceipt(ctx *Context, hash *Hash) (receipt *Receipt, _ error) {
+func (ec *SberexClient) GetTransactionReceipt(ctx *Context, hash *Hash) (receipt *Receipt, _ error) {
 	rawReceipt, err := ec.client.TransactionReceipt(ctx.context, hash.hash)
 	return &Receipt{rawReceipt}, err
 }
 
 // SyncProgress retrieves the current progress of the sync algorithm. If there's
 // no sync currently running, it returns nil.
-func (ec *EthereumClient) SyncProgress(ctx *Context) (progress *SyncProgress, _ error) {
+func (ec *SberexClient) SyncProgress(ctx *Context) (progress *SyncProgress, _ error) {
 	rawProgress, err := ec.client.SyncProgress(ctx.context)
 	if rawProgress == nil {
 		return nil, err
@@ -118,7 +118,7 @@ type NewHeadHandler interface {
 
 // SubscribeNewHead subscribes to notifications about the current blockchain head
 // on the given channel.
-func (ec *EthereumClient) SubscribeNewHead(ctx *Context, handler NewHeadHandler, buffer int) (sub *Subscription, _ error) {
+func (ec *SberexClient) SubscribeNewHead(ctx *Context, handler NewHeadHandler, buffer int) (sub *Subscription, _ error) {
 	// Subscribe to the event internally
 	ch := make(chan *types.Header, buffer)
 	rawSub, err := ec.client.SubscribeNewHead(ctx.context, ch)
@@ -145,7 +145,7 @@ func (ec *EthereumClient) SubscribeNewHead(ctx *Context, handler NewHeadHandler,
 
 // GetBalanceAt returns the wei balance of the given account.
 // The block number can be <0, in which case the balance is taken from the latest known block.
-func (ec *EthereumClient) GetBalanceAt(ctx *Context, account *Address, number int64) (balance *BigInt, _ error) {
+func (ec *SberexClient) GetBalanceAt(ctx *Context, account *Address, number int64) (balance *BigInt, _ error) {
 	if number < 0 {
 		rawBalance, err := ec.client.BalanceAt(ctx.context, account.address, nil)
 		return &BigInt{rawBalance}, err
@@ -156,7 +156,7 @@ func (ec *EthereumClient) GetBalanceAt(ctx *Context, account *Address, number in
 
 // GetStorageAt returns the value of key in the contract storage of the given account.
 // The block number can be <0, in which case the value is taken from the latest known block.
-func (ec *EthereumClient) GetStorageAt(ctx *Context, account *Address, key *Hash, number int64) (storage []byte, _ error) {
+func (ec *SberexClient) GetStorageAt(ctx *Context, account *Address, key *Hash, number int64) (storage []byte, _ error) {
 	if number < 0 {
 		return ec.client.StorageAt(ctx.context, account.address, key.hash, nil)
 	}
@@ -165,7 +165,7 @@ func (ec *EthereumClient) GetStorageAt(ctx *Context, account *Address, key *Hash
 
 // GetCodeAt returns the contract code of the given account.
 // The block number can be <0, in which case the code is taken from the latest known block.
-func (ec *EthereumClient) GetCodeAt(ctx *Context, account *Address, number int64) (code []byte, _ error) {
+func (ec *SberexClient) GetCodeAt(ctx *Context, account *Address, number int64) (code []byte, _ error) {
 	if number < 0 {
 		return ec.client.CodeAt(ctx.context, account.address, nil)
 	}
@@ -174,7 +174,7 @@ func (ec *EthereumClient) GetCodeAt(ctx *Context, account *Address, number int64
 
 // GetNonceAt returns the account nonce of the given account.
 // The block number can be <0, in which case the nonce is taken from the latest known block.
-func (ec *EthereumClient) GetNonceAt(ctx *Context, account *Address, number int64) (nonce int64, _ error) {
+func (ec *SberexClient) GetNonceAt(ctx *Context, account *Address, number int64) (nonce int64, _ error) {
 	if number < 0 {
 		rawNonce, err := ec.client.NonceAt(ctx.context, account.address, nil)
 		return int64(rawNonce), err
@@ -186,7 +186,7 @@ func (ec *EthereumClient) GetNonceAt(ctx *Context, account *Address, number int6
 // Filters
 
 // FilterLogs executes a filter query.
-func (ec *EthereumClient) FilterLogs(ctx *Context, query *FilterQuery) (logs *Logs, _ error) {
+func (ec *SberexClient) FilterLogs(ctx *Context, query *FilterQuery) (logs *Logs, _ error) {
 	rawLogs, err := ec.client.FilterLogs(ctx.context, query.query)
 	if err != nil {
 		return nil, err
@@ -207,7 +207,7 @@ type FilterLogsHandler interface {
 }
 
 // SubscribeFilterLogs subscribes to the results of a streaming filter query.
-func (ec *EthereumClient) SubscribeFilterLogs(ctx *Context, query *FilterQuery, handler FilterLogsHandler, buffer int) (sub *Subscription, _ error) {
+func (ec *SberexClient) SubscribeFilterLogs(ctx *Context, query *FilterQuery, handler FilterLogsHandler, buffer int) (sub *Subscription, _ error) {
 	// Subscribe to the event internally
 	ch := make(chan types.Log, buffer)
 	rawSub, err := ec.client.SubscribeFilterLogs(ctx.context, query.query, ch)
@@ -233,30 +233,30 @@ func (ec *EthereumClient) SubscribeFilterLogs(ctx *Context, query *FilterQuery, 
 // Pending State
 
 // GetPendingBalanceAt returns the wei balance of the given account in the pending state.
-func (ec *EthereumClient) GetPendingBalanceAt(ctx *Context, account *Address) (balance *BigInt, _ error) {
+func (ec *SberexClient) GetPendingBalanceAt(ctx *Context, account *Address) (balance *BigInt, _ error) {
 	rawBalance, err := ec.client.PendingBalanceAt(ctx.context, account.address)
 	return &BigInt{rawBalance}, err
 }
 
 // GetPendingStorageAt returns the value of key in the contract storage of the given account in the pending state.
-func (ec *EthereumClient) GetPendingStorageAt(ctx *Context, account *Address, key *Hash) (storage []byte, _ error) {
+func (ec *SberexClient) GetPendingStorageAt(ctx *Context, account *Address, key *Hash) (storage []byte, _ error) {
 	return ec.client.PendingStorageAt(ctx.context, account.address, key.hash)
 }
 
 // GetPendingCodeAt returns the contract code of the given account in the pending state.
-func (ec *EthereumClient) GetPendingCodeAt(ctx *Context, account *Address) (code []byte, _ error) {
+func (ec *SberexClient) GetPendingCodeAt(ctx *Context, account *Address) (code []byte, _ error) {
 	return ec.client.PendingCodeAt(ctx.context, account.address)
 }
 
 // GetPendingNonceAt returns the account nonce of the given account in the pending state.
 // This is the nonce that should be used for the next transaction.
-func (ec *EthereumClient) GetPendingNonceAt(ctx *Context, account *Address) (nonce int64, _ error) {
+func (ec *SberexClient) GetPendingNonceAt(ctx *Context, account *Address) (nonce int64, _ error) {
 	rawNonce, err := ec.client.PendingNonceAt(ctx.context, account.address)
 	return int64(rawNonce), err
 }
 
 // GetPendingTransactionCount returns the total number of transactions in the pending state.
-func (ec *EthereumClient) GetPendingTransactionCount(ctx *Context) (count int, _ error) {
+func (ec *SberexClient) GetPendingTransactionCount(ctx *Context) (count int, _ error) {
 	rawCount, err := ec.client.PendingTransactionCount(ctx.context)
 	return int(rawCount), err
 }
@@ -269,7 +269,7 @@ func (ec *EthereumClient) GetPendingTransactionCount(ctx *Context) (count int, _
 // blockNumber selects the block height at which the call runs. It can be <0, in which
 // case the code is taken from the latest known block. Note that state from very old
 // blocks might not be available.
-func (ec *EthereumClient) CallContract(ctx *Context, msg *CallMsg, number int64) (output []byte, _ error) {
+func (ec *SberexClient) CallContract(ctx *Context, msg *CallMsg, number int64) (output []byte, _ error) {
 	if number < 0 {
 		return ec.client.CallContract(ctx.context, msg.msg, nil)
 	}
@@ -278,13 +278,13 @@ func (ec *EthereumClient) CallContract(ctx *Context, msg *CallMsg, number int64)
 
 // PendingCallContract executes a message call transaction using the EVM.
 // The state seen by the contract call is the pending state.
-func (ec *EthereumClient) PendingCallContract(ctx *Context, msg *CallMsg) (output []byte, _ error) {
+func (ec *SberexClient) PendingCallContract(ctx *Context, msg *CallMsg) (output []byte, _ error) {
 	return ec.client.PendingCallContract(ctx.context, msg.msg)
 }
 
 // SuggestGasPrice retrieves the currently suggested gas price to allow a timely
 // execution of a transaction.
-func (ec *EthereumClient) SuggestGasPrice(ctx *Context) (price *BigInt, _ error) {
+func (ec *SberexClient) SuggestGasPrice(ctx *Context) (price *BigInt, _ error) {
 	rawPrice, err := ec.client.SuggestGasPrice(ctx.context)
 	return &BigInt{rawPrice}, err
 }
@@ -293,7 +293,7 @@ func (ec *EthereumClient) SuggestGasPrice(ctx *Context) (price *BigInt, _ error)
 // the current pending state of the backend blockchain. There is no guarantee that this is
 // the true gas limit requirement as other transactions may be added or removed by miners,
 // but it should provide a basis for setting a reasonable default.
-func (ec *EthereumClient) EstimateGas(ctx *Context, msg *CallMsg) (gas int64, _ error) {
+func (ec *SberexClient) EstimateGas(ctx *Context, msg *CallMsg) (gas int64, _ error) {
 	rawGas, err := ec.client.EstimateGas(ctx.context, msg.msg)
 	return int64(rawGas), err
 }
@@ -302,6 +302,6 @@ func (ec *EthereumClient) EstimateGas(ctx *Context, msg *CallMsg) (gas int64, _ 
 //
 // If the transaction was a contract creation use the TransactionReceipt method to get the
 // contract address after the transaction has been mined.
-func (ec *EthereumClient) SendTransaction(ctx *Context, tx *Transaction) error {
+func (ec *SberexClient) SendTransaction(ctx *Context, tx *Transaction) error {
 	return ec.client.SendTransaction(ctx.context, tx.tx)
 }
