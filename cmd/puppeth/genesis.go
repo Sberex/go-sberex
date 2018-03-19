@@ -25,7 +25,7 @@ import (
 
 // cppSberexGenesisSpec represents the genesis specification format used by the
 // C++ Sberex implementation.
-type cppEthereumGenesisSpec struct {
+type cppSberexGenesisSpec struct {
 	SealEngine string `json:"sealEngine"`
 	Params     struct {
 		AccountStartNonce       hexutil.Uint64 `json:"accountStartNonce"`
