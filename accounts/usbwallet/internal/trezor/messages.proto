@@ -318,9 +318,9 @@ message GetAddress {
 }
 
 /**
- * Request: Ask device for Ethereum address corresponding to address_n path
+ * Request: Ask device for Sberex address corresponding to address_n path
  * @next PassphraseRequest
- * @next EthereumAddress
+ * @next SberexAddress
  * @next Failure
  */
 message EthereumGetAddress {
@@ -337,11 +337,11 @@ message Address {
 }
 
 /**
- * Response: Contains an Ethereum address derived from device private seed
- * @prev EthereumGetAddress
+ * Response: Contains an Sberex address derived from device private seed
+ * @prev SberexGetAddress
  */
-message EthereumAddress {
-	required bytes address = 1;		// Coin address as an Ethereum 160 bit hash
+message SberexAddress {
+	required bytes address = 1;		// Coin address as an Sberex 160 bit hash
 }
 
 /**
@@ -642,7 +642,7 @@ message TxAck {
  * Note: the first at most 1024 bytes of data MUST be transmitted as part of this message.
  * @next PassphraseRequest
  * @next PinMatrixRequest
- * @next EthereumTxRequest
+ * @next SberexTxRequest
  * @next Failure
  */
 message EthereumSignTx {
@@ -664,7 +664,7 @@ message EthereumSignTx {
  * @prev EthereumSignTx
  * @next EthereumTxAck
  */
-message EthereumTxRequest {
+message SberexTxRequest {
 	optional uint32 data_length = 1;		// Number of bytes being requested (<= 1024)
 	optional uint32 signature_v = 2;		// Computed signature (recovery parameter, limited to 27 or 28)
 	optional bytes signature_r = 3;			// Computed signature R component (256 bit)
@@ -673,10 +673,10 @@ message EthereumTxRequest {
 
 /**
  * Request: Transaction payload data.
- * @prev EthereumTxRequest
- * @next EthereumTxRequest
+ * @prev SberexTxRequest
+ * @next SberexTxRequest
  */
-message EthereumTxAck {
+message SberexTxAck {
 	optional bytes data_chunk = 1;			// Bytes from transaction payload (<= 1024 bytes)
 }
 
@@ -686,10 +686,10 @@ message EthereumTxAck {
 
 /**
  * Request: Ask device to sign message
- * @next EthereumMessageSignature
+ * @next SberexMessageSignature
  * @next Failure
  */
-message EthereumSignMessage {
+message SberexSignMessage {
 	repeated uint32 address_n = 1;				// BIP-32 path to derive the key from master node
 	required bytes message = 2;				// message to be signed
 }
@@ -699,7 +699,7 @@ message EthereumSignMessage {
  * @next Success
  * @next Failure
  */
-message EthereumVerifyMessage {
+message SberexVerifyMessage {
 	optional bytes address = 1;				// address to verify
 	optional bytes signature = 2;				// signature to verify
 	optional bytes message = 3;				// message to verify
@@ -707,9 +707,9 @@ message EthereumVerifyMessage {
 
 /**
  * Response: Signed message
- * @prev EthereumSignMessage
+ * @prev SberexSignMessage
  */
-message EthereumMessageSignature {
+message SberexMessageSignature {
 	optional bytes address = 1;				// address used to sign the message
 	optional bytes signature = 2;				// signature of the message
 }
