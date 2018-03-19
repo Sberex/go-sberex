@@ -681,7 +681,7 @@ message SberexTxAck {
 }
 
 ////////////////////////////////////////
-// Ethereum: Message signing messages //
+// Sberex: Message signing messages //
 ////////////////////////////////////////
 
 /**
