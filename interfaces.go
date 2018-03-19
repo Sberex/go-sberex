@@ -9,8 +9,8 @@
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser 
 // General Public License <http://www.gnu.org/licenses/> for more details.
 
-// Package ethereum defines interfaces for interacting with Sberex.
-package ethereum
+// Package sberex defines interfaces for interacting with Sberex.
+package sberex
 
 import (
 	"context"
