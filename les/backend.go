@@ -40,7 +40,7 @@ import (
 	rpc "github.com/Sberex/go-sberex/rpc"
 )
 
-type LightEthereum struct {
+type LightSberex struct {
 	config *eth.Config
 
 	odr         *LesOdr
@@ -214,7 +214,7 @@ func (s *LightSberex) Protocols() []p2p.Protocol {
 }
 
 // Start implements node.Service, starting all internal goroutines needed by the
-// Ethereum protocol implementation.
+// Sberex protocol implementation.
 func (s *LightSberex) Start(srvr *p2p.Server) error {
 	s.startBloomHandlers()
 	log.Warn("Light client mode is an experimental feature")
