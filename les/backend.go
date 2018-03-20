@@ -168,9 +168,9 @@ func (s *LightDummyAPI) Mining() bool {
 	return false
 }
 
-// APIs returns the collection of RPC services the ethereum package offers.
+// APIs returns the collection of RPC services the sberex package offers.
 // NOTE, some of these services probably need to be moved to somewhere else.
-func (s *LightEthereum) APIs() []rpc.API {
+func (s *LightSberex) APIs() []rpc.API {
 	return append(ethapi.GetAPIs(s.ApiBackend), []rpc.API{
 		{
 			Namespace: "eth",
@@ -227,7 +227,7 @@ func (s *LightSberex) Start(srvr *p2p.Server) error {
 }
 
 // Stop implements node.Service, terminating all internal goroutines used by the
-// Ethereum protocol.
+// Sberex protocol.
 func (s *LightSberex) Stop() error {
 	s.odr.Stop()
 	if s.bloomIndexer != nil {
