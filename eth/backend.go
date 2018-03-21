@@ -95,10 +95,10 @@ func (s *Sberex) AddLesServer(ls LesServer) {
 }
 
 // New creates a new Sberex object (including the
-// initialisation of the common Ethereum object)
+// initialisation of the common Sberex object)
 func New(ctx *node.ServiceContext, config *Config) (*Sberex, error) {
 	if config.SyncMode == downloader.LightSync {
-		return nil, errors.New("can't run eth.Ethereum in light sync mode, use les.LightEthereum")
+		return nil, errors.New("can't run eth.Sberex in light sync mode, use les.LightSberex")
 	}
 	if !config.SyncMode.IsValid() {
 		return nil, fmt.Errorf("invalid sync mode %d", config.SyncMode)
