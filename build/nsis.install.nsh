@@ -33,9 +33,9 @@ Section "Geth" GETH_IDX
   SimpleFC::AdvAddRule "Geth outgoing peers (TCP:30303)" ""  6 2 1 2147483647 1 "$INSTDIR\geth.exe" "" "" "Sberex" "" 30303 "" ""
   SimpleFC::AdvAddRule "Geth UDP discovery (UDP:30303)" "" 17 2 1 2147483647 1 "$INSTDIR\geth.exe" "" "" "Sberex" "" 30303 "" ""
 
-  # Set default IPC endpoint (https://github.com/ethereum/EIPs/issues/147)
-  ${EnvVarUpdate} $0 "ETHEREUM_SOCKET" "R" "HKLM" "\\.\pipe\geth.ipc"
-  ${EnvVarUpdate} $0 "ETHEREUM_SOCKET" "A" "HKLM" "\\.\pipe\geth.ipc"
+  # Set default IPC endpoint
+  ${EnvVarUpdate} $0 "SBEREX_SOCKET" "R" "HKLM" "\\.\pipe\geth.ipc"
+  ${EnvVarUpdate} $0 "SBEREX_SOCKET" "A" "HKLM" "\\.\pipe\geth.ipc"
 
   # Add instdir to PATH
   Push "$INSTDIR"
