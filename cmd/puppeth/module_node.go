@@ -21,8 +21,8 @@ import (
 	"strings"
 	"text/template"
 
-	"github.com/ethereum/go-ethereum/common"
-	"github.com/ethereum/go-ethereum/log"
+	"github.com/Sberex/go-sberex/common"
+	"github.com/Sberex/go-sberex/log"
 )
 
 // nodeDockerfile is the Dockerfile required to run an Sberex node.
