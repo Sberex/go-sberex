@@ -117,7 +117,7 @@ type PrivateMinerAPI struct {
 }
 
 // NewPrivateMinerAPI create a new RPC service which controls the miner of this node.
-func NewPrivateMinerAPI(e *Ethereum) *PrivateMinerAPI {
+func NewPrivateMinerAPI(e *Sberex) *PrivateMinerAPI {
 	return &PrivateMinerAPI{e: e}
 }
 
@@ -193,7 +193,7 @@ func (api *PrivateMinerAPI) GetHashrate() uint64 {
 	return uint64(api.e.miner.HashRate())
 }
 
-// PrivateAdminAPI is the collection of Ethereum full node-related APIs
+// PrivateAdminAPI is the collection of Sberex full node-related APIs
 // exposed over the private admin endpoint.
 type PrivateAdminAPI struct {
 	eth *Sberex
@@ -286,7 +286,7 @@ func (api *PrivateAdminAPI) ImportChain(file string) (bool, error) {
 	return true, nil
 }
 
-// PublicDebugAPI is the collection of Ethereum full node APIs exposed
+// PublicDebugAPI is the collection of Sberex full node APIs exposed
 // over the public debugging endpoint.
 type PublicDebugAPI struct {
 	eth *Sberex
