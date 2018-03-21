@@ -238,7 +238,7 @@ func CreateConsensusEngine(ctx *node.ServiceContext, config *ethash.Config, chai
 
 // APIs returns the collection of RPC services the sberex package offers.
 // NOTE, some of these services probably need to be moved to somewhere else.
-func (s *Ethereum) APIs() []rpc.API {
+func (s *Sberex) APIs() []rpc.API {
 	apis := ethapi.GetAPIs(s.ApiBackend)
 
 	// Append any APIs exposed explicitly by the consensus engine
@@ -249,7 +249,7 @@ func (s *Ethereum) APIs() []rpc.API {
 		{
 			Namespace: "eth",
 			Version:   "1.0",
-			Service:   NewPublicEthereumAPI(s),
+			Service:   NewPublicSberexAPI(s),
 			Public:    true,
 		}, {
 			Namespace: "eth",
@@ -293,11 +293,11 @@ func (s *Ethereum) APIs() []rpc.API {
 	}...)
 }
 
-func (s *Ethereum) ResetWithGenesisBlock(gb *types.Block) {
+func (s *Sberex) ResetWithGenesisBlock(gb *types.Block) {
 	s.blockchain.ResetWithGenesisBlock(gb)
 }
 
-func (s *Ethereum) Etherbase() (eb common.Address, err error) {
+func (s *Sberex) Etherbase() (eb common.Address, err error) {
 	s.lock.RLock()
 	etherbase := s.etherbase
 	s.lock.RUnlock()
@@ -405,7 +405,7 @@ func (s *Sberex) Start(srvr *p2p.Server) error {
 
 // Stop implements node.Service, terminating all internal goroutines used by the
 // Sberex protocol.
-func (s *Ethereum) Stop() error {
+func (s *Sberex) Stop() error {
 	if s.stopDbUpgrade != nil {
 		s.stopDbUpgrade()
 	}
