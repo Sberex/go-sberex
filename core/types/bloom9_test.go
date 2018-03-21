@@ -49,7 +49,7 @@ func TestBloom(t *testing.T) {
 import (
 	"testing"
 
-	"github.com/ethereum/go-ethereum/core/state"
+	"github.com/Sberex/go-sberex/core/state"
 )
 
 func TestBloom9(t *testing.T) {
