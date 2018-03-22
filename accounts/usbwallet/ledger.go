@@ -153,7 +153,7 @@ func (w *ledgerDriver) Derive(path accounts.DerivationPath) (common.Address, err
 // too old to sign EIP-155 transactions, but such is requested nonetheless, an error
 // will be returned opposed to silently signing in Homestead mode.
 func (w *ledgerDriver) SignTx(path accounts.DerivationPath, tx *types.Transaction, chainID *big.Int) (common.Address, *types.Transaction, error) {
-	// If the Ethereum app doesn't run, abort
+	// If the Sberex app doesn't run, abort
 	if w.offline() {
 		return common.Address{}, nil, accounts.ErrWalletClosed
 	}
@@ -225,8 +225,8 @@ func (w *ledgerDriver) ledgerVersion() ([3]byte, error) {
 //   ------------------------+-------------------
 //   Public Key length       | 1 byte
 //   Uncompressed Public Key | arbitrary
-//   Ethereum address length | 1 byte
-//   Ethereum address        | 40 bytes hex ascii
+//   Sberex address length   | 1 byte
+//   Sberex address          | 40 bytes hex ascii
 //   Chain code if requested | 32 bytes
 func (w *ledgerDriver) ledgerDerive(derivationPath []uint32) (common.Address, error) {
 	// Flatten the derivation path into the Ledger request
