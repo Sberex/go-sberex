@@ -95,7 +95,7 @@ func (w *ledgerDriver) Status() (string, error) {
 	return fmt.Sprintf("Sberex app v%d.%d.%d online", w.version[0], w.version[1], w.version[2]), w.failure
 }
 
-// offline returns whether the wallet and the Ethereum app is offline or not.
+// offline returns whether the wallet and the Sberex app is offline or not.
 //
 // The method assumes that the state lock is held!
 func (w *ledgerDriver) offline() bool {
@@ -252,7 +252,7 @@ func (w *ledgerDriver) ledgerDerive(derivationPath []uint32) (common.Address, er
 	}
 	hexstr := reply[1 : 1+int(reply[0])]
 
-	// Decode the hex sting into an Ethereum address and return
+	// Decode the hex sting into an Sberex address and return
 	var address common.Address
 	hex.Decode(address[:], hexstr)
 	return address, nil
