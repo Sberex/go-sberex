@@ -41,7 +41,7 @@ const (
 var (
 	// Git SHA1 commit hash of the release (set via linker flags)
 	gitCommit = ""
-	// Ethereum address of the Geth release oracle.
+	// Sberex address of the Geth release oracle.
 	relOracle = common.HexToAddress("0xfa7b9770ca4cb04296cac84f37736d4041251cdf")
 	// The app that holds all commands and flags.
 	app = utils.NewApp(gitCommit, "the go-sberex command line interface")
@@ -145,7 +145,7 @@ func init() {
 	// Initialize the CLI app and start Geth
 	app.Action = geth
 	app.HideVersion = true // we have a command to print the version
-	app.Copyright = "Copyright 2013-2017 The go-ethereum Authors"
+	app.Copyright = "Copyright 2018 The go-sberex Authors"
 	app.Commands = []cli.Command{
 		// See chaincmd.go:
 		initCommand,
@@ -276,12 +276,12 @@ func startNode(ctx *cli.Context, stack *node.Node) {
 	}()
 	// Start auxiliary services if enabled
 	if ctx.GlobalBool(utils.MiningEnabledFlag.Name) || ctx.GlobalBool(utils.DeveloperFlag.Name) {
-		// Mining only makes sense if a full Ethereum node is running
+		// Mining only makes sense if a full Sberex node is running
 		if ctx.GlobalBool(utils.LightModeFlag.Name) || ctx.GlobalString(utils.SyncModeFlag.Name) == "light" {
 			utils.Fatalf("Light clients do not support mining")
 		}
-		var ethereum *eth.Ethereum
-		if err := stack.Service(&ethereum); err != nil {
+		var sberex *eth.Sberex
+		if err := stack.Service(&sberex); err != nil {
 			utils.Fatalf("Sberex service not running: %v", err)
 		}
 		// Use a reduced number of threads if requested
@@ -289,13 +289,13 @@ func startNode(ctx *cli.Context, stack *node.Node) {
 			type threaded interface {
 				SetThreads(threads int)
 			}
-			if th, ok := ethereum.Engine().(threaded); ok {
+			if th, ok := sberex.Engine().(threaded); ok {
 				th.SetThreads(threads)
 			}
 		}
 		// Set the gas price to the limits from the CLI and start mining
-		ethereum.TxPool().SetGasPrice(utils.GlobalBig(ctx, utils.GasPriceFlag.Name))
-		if err := ethereum.StartMining(true); err != nil {
+		sberex.TxPool().SetGasPrice(utils.GlobalBig(ctx, utils.GasPriceFlag.Name))
+		if err := sberex.StartMining(true); err != nil {
 			utils.Fatalf("Failed to start mining: %v", err)
 		}
 	}
