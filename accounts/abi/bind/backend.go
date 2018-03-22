@@ -42,9 +42,9 @@ type ContractCaller interface {
 	// CodeAt returns the code of the given account. This is needed to differentiate
 	// between contract internal errors and the local chain being out of sync.
 	CodeAt(ctx context.Context, contract common.Address, blockNumber *big.Int) ([]byte, error)
-	// ContractCall executes an Ethereum contract call with the specified data as the
+	// ContractCall executes an Sberex contract call with the specified data as the
 	// input.
-	CallContract(ctx context.Context, call ethereum.CallMsg, blockNumber *big.Int) ([]byte, error)
+	CallContract(ctx context.Context, call sberex.CallMsg, blockNumber *big.Int) ([]byte, error)
 }
 
 // PendingContractCaller defines methods to perform contract calls on the pending state.
