@@ -29,7 +29,7 @@ var gitCommit = ""
 var app *cli.App
 
 func init() {
-	app = utils.NewApp(gitCommit, "an Ethereum key manager")
+	app = utils.NewApp(gitCommit, "an Sberex key manager")
 	app.Commands = []cli.Command{
 		commandGenerate,
 		commandInspect,
