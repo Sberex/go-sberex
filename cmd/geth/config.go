@@ -27,7 +27,7 @@ import (
 	"github.com/Sberex/go-sberex/eth"
 	"github.com/Sberex/go-sberex/node"
 	"github.com/Sberex/go-sberex/params"
-	whisper "github.com/ethereum/go-ethereum/whisper/whisperv5"
+	whisper "github.com/Sberex/go-sberex/whisper/whisperv5"
 	"github.com/naoina/toml"
 )
 
@@ -166,7 +166,7 @@ func makeFullNode(ctx *cli.Context) *node.Node {
 		utils.RegisterShhService(stack, &cfg.Shh)
 	}
 
-	// Add the Ethereum Stats daemon if requested.
+	// Add the Sberex Stats daemon if requested.
 	if cfg.Ethstats.URL != "" {
 		utils.RegisterEthStatsService(stack, cfg.Ethstats.URL)
 	}
