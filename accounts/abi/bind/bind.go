@@ -9,10 +9,10 @@
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser 
 // General Public License <http://www.gnu.org/licenses/> for more details.
 
-// Package bind generates Ethereum contract Go bindings.
+// Package bind generates Sberex contract Go bindings.
 //
-// Detailed usage document and tutorial available on the go-ethereum Wiki page:
-// https://github.com/ethereum/go-ethereum/wiki/Native-DApps:-Go-bindings-to-Ethereum-contracts
+// Detailed usage document and tutorial available on the go-sberex Wiki page:
+// https://github.com/Sberex/go-sberex/wiki/Native-DApps:-Go-bindings-to-Sberex-contracts
 package bind
 
 import (
