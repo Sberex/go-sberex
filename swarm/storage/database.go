@@ -11,7 +11,7 @@
 
 package storage
 
-// this is a clone of an earlier state of the ethereum ethdb/database
+// this is a clone of an earlier state of the sberex ethdb/database
 // no need for queueing/caching
 
 import (
