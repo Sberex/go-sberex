@@ -10,7 +10,7 @@
 // General Public License <http://www.gnu.org/licenses/> for more details.
 
 // Package light implements on-demand retrieval capable state and chain objects
-// for the Ethereum Light Client.
+// for the Sberex Light Client.
 package les
 
 import (
