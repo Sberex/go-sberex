@@ -38,7 +38,7 @@ var bugCommand = cli.Command{
 
 const issueUrl = "https://github.com/Sberex/go-sberex/issues/new"
 
-// reportBug reports a bug by opening a new URL to the go-ethereum GH issue
+// reportBug reports a bug by opening a new URL to the go-sberex GH issue
 // tracker and setting default values as the issue body.
 func reportBug(ctx *cli.Context) error {
 	// execute template and write contents to buff
