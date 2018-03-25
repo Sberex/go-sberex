@@ -17,7 +17,7 @@ import (
 	"math/big"
 	"reflect"
 
-	"github.com/ethereum/go-ethereum/common"
+	"github.com/Sberex/go-sberex/common"
 )
 
 // reads the integer based on its kind
