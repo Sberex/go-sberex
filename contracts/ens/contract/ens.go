@@ -6,7 +6,7 @@ package contract
 import (
 	"strings"
 
-	ethereum "github.com/Sberex/go-sberex"
+	sberex "github.com/Sberex/go-sberex"
 	"github.com/Sberex/go-sberex/accounts/abi"
 	"github.com/Sberex/go-sberex/accounts/abi/bind"
 	"github.com/Sberex/go-sberex/common"
@@ -33,29 +33,29 @@ func DeployENS(auth *bind.TransactOpts, backend bind.ContractBackend) (common.Ad
 	return address, tx, &ENS{ENSCaller: ENSCaller{contract: contract}, ENSTransactor: ENSTransactor{contract: contract}, ENSFilterer: ENSFilterer{contract: contract}}, nil
 }
 
-// ENS is an auto generated Go binding around an Ethereum contract.
+// ENS is an auto generated Go binding around an Sberex contract.
 type ENS struct {
 	ENSCaller     // Read-only binding to the contract
 	ENSTransactor // Write-only binding to the contract
 	ENSFilterer   // Log filterer for contract events
 }
 
-// ENSCaller is an auto generated read-only Go binding around an Ethereum contract.
+// ENSCaller is an auto generated read-only Go binding around an Sberex contract.
 type ENSCaller struct {
 	contract *bind.BoundContract // Generic contract wrapper for the low level calls
 }
 
-// ENSTransactor is an auto generated write-only Go binding around an Ethereum contract.
+// ENSTransactor is an auto generated write-only Go binding around an Sberex contract.
 type ENSTransactor struct {
 	contract *bind.BoundContract // Generic contract wrapper for the low level calls
 }
 
-// ENSFilterer is an auto generated log filtering Go binding around an Ethereum contract events.
+// ENSFilterer is an auto generated log filtering Go binding around an Sberex contract events.
 type ENSFilterer struct {
 	contract *bind.BoundContract // Generic contract wrapper for the low level calls
 }
 
-// ENSSession is an auto generated Go binding around an Ethereum contract,
+// ENSSession is an auto generated Go binding around an Sberex contract,
 // with pre-set call and transact options.
 type ENSSession struct {
 	Contract     *ENS              // Generic contract binding to set the session for
@@ -63,31 +63,31 @@ type ENSSession struct {
 	TransactOpts bind.TransactOpts // Transaction auth options to use throughout this session
 }
 
-// ENSCallerSession is an auto generated read-only Go binding around an Ethereum contract,
+// ENSCallerSession is an auto generated read-only Go binding around an Sberex contract,
 // with pre-set call options.
 type ENSCallerSession struct {
 	Contract *ENSCaller    // Generic contract caller binding to set the session for
 	CallOpts bind.CallOpts // Call options to use throughout this session
 }
 
-// ENSTransactorSession is an auto generated write-only Go binding around an Ethereum contract,
+// ENSTransactorSession is an auto generated write-only Go binding around an Sberex contract,
 // with pre-set transact options.
 type ENSTransactorSession struct {
 	Contract     *ENSTransactor    // Generic contract transactor binding to set the session for
 	TransactOpts bind.TransactOpts // Transaction auth options to use throughout this session
 }
 
-// ENSRaw is an auto generated low-level Go binding around an Ethereum contract.
+// ENSRaw is an auto generated low-level Go binding around an Sberex contract.
 type ENSRaw struct {
 	Contract *ENS // Generic contract binding to access the raw methods on
 }
 
-// ENSCallerRaw is an auto generated low-level read-only Go binding around an Ethereum contract.
+// ENSCallerRaw is an auto generated low-level read-only Go binding around an Sberex contract.
 type ENSCallerRaw struct {
 	Contract *ENSCaller // Generic read-only contract binding to access the raw methods on
 }
 
-// ENSTransactorRaw is an auto generated low-level write-only Go binding around an Ethereum contract.
+// ENSTransactorRaw is an auto generated low-level write-only Go binding around an Sberex contract.
 type ENSTransactorRaw struct {
 	Contract *ENSTransactor // Generic write-only contract binding to access the raw methods on
 }
@@ -345,7 +345,7 @@ type ENSNewOwnerIterator struct {
 	event    string              // Event name to use for unpacking event data
 
 	logs chan types.Log        // Log channel receiving the found contract events
-	sub  ethereum.Subscription // Subscription for errors, completion and termination
+	sub  sberex.Subscription   // Subscription for errors, completion and termination
 	done bool                  // Whether the subscription completed delivering logs
 	fail error                 // Occurred error to stop iteration
 }
