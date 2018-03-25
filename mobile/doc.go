@@ -28,7 +28,7 @@
 // writing custom library generators, but those are out of scope now.
 //
 // Content wise each file in this package corresponds to an entire Go package
-// from the go-ethereum repository. Please adhere to this scoping to prevent this
+// from the go-sberex repository. Please adhere to this scoping to prevent this
 // package getting unmaintainable.
 //
 // Wrapping guidelines:
