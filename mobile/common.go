@@ -123,7 +123,7 @@ func (h *Hashes) Append(hash *Hash) {
 	h.hashes = append(h.hashes, hash.hash)
 }
 
-// Address represents the 20 byte address of an Ethereum account.
+// Address represents the 20 byte address of an Sberex account.
 type Address struct {
 	address common.Address
 }
