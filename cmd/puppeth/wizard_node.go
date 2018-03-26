@@ -159,7 +159,7 @@ func (w *wizard) deployNode(boot bool) {
 		nocache = w.readDefaultString("n") != "n"
 	}
 	if out, err := deployNode(client, w.network, w.conf.bootnodes, infos, nocache); err != nil {
-		log.Error("Failed to deploy Ethereum node container", "err", err)
+		log.Error("Failed to deploy Sberex node container", "err", err)
 		if len(out) > 0 {
 			fmt.Printf("%s\n", out)
 		}
