@@ -32,7 +32,7 @@ type testerVote struct {
 }
 
 // testerAccountPool is a pool to maintain currently active tester accounts,
-// mapped from textual names used in the tests below to actual Ethereum private
+// mapped from textual names used in the tests below to actual Sberex private
 // keys capable of signing transactions.
 type testerAccountPool struct {
 	accounts map[string]*ecdsa.PrivateKey
@@ -59,7 +59,7 @@ func (ap *testerAccountPool) address(account string) common.Address {
 	if ap.accounts[account] == nil {
 		ap.accounts[account], _ = crypto.GenerateKey()
 	}
-	// Resolve and return the Ethereum address
+	// Resolve and return the Sberex address
 	return crypto.PubkeyToAddress(ap.accounts[account].PublicKey)
 }
 
