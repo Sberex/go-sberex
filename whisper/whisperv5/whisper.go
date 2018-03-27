@@ -46,7 +46,7 @@ const (
 	overflowIdx   = iota // Indicator of message queue overflow
 )
 
-// Whisper represents a dark communication interface through the Ethereum
+// Whisper represents a dark communication interface through the Sberex
 // network, using its very own P2P communication layer.
 type Whisper struct {
 	protocol p2p.Protocol // Protocol description and parameters
@@ -75,7 +75,7 @@ type Whisper struct {
 	mailServer MailServer // MailServer interface
 }
 
-// New creates a Whisper client ready to communicate through the Ethereum P2P network.
+// New creates a Whisper client ready to communicate through the Sberex P2P network.
 func New(cfg *Config) *Whisper {
 	if cfg == nil {
 		cfg = &DefaultConfig
