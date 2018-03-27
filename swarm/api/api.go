@@ -134,7 +134,7 @@ func (m MultiResolver) Resolve(addr string) (h common.Hash, err error) {
 /*
 Api implements webserver/file system related content storage and retrieval
 on top of the dpa
-it is the public interface of the dpa which is included in the ethereum stack
+it is the public interface of the dpa which is included in the sberex stack
 */
 type Api struct {
 	dpa *storage.DPA
