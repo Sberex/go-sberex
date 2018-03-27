@@ -12,7 +12,7 @@
 package params
 
 const (
-	// These are the multipliers for ether denominations.
+	// These are the multipliers for sbr denominations.
 	// Example: To get the leto value of an amount in 'sbr', use
 	//
 	//    new(big.Int).Mul(value, big.NewInt(params.Sbr))
