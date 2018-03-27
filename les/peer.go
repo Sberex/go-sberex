@@ -505,7 +505,7 @@ type peerSetNotify interface {
 }
 
 // peerSet represents the collection of active peers currently participating in
-// the Light Ethereum sub-protocol.
+// the Light Sberex sub-protocol.
 type peerSet struct {
 	peers      map[string]*peer
 	lock       sync.RWMutex
