@@ -40,7 +40,7 @@ import (
 )
 
 const (
-	defaultGasPrice = 50 * params.Shannon
+	defaultGasPrice = 50 * params.Serg
 )
 
 // PublicSberexAPI provides an API to access Sberex related information.
