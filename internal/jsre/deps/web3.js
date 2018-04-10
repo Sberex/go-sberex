@@ -2080,7 +2080,7 @@ var toHex = function (val) {
  * Returns value of unit in Leto
  *
  * @method getValueOfUnit
- * @param {String} unit the unit to convert to, default ether
+ * @param {String} unit the unit to convert to, default sbr
  * @returns {BigNumber} value of the unit (in Leto)
  * @throws error if the unit is not correct:w
  */
@@ -2124,7 +2124,7 @@ var fromLeto = function(number, unit) {
  *
  * @method toLeto
  * @param {Number|String|BigNumber} number can be a number, number string or a HEX of a decimal
- * @param {String} unit the unit to convert from, default ether
+ * @param {String} unit the unit to convert from, default sbr
  * @return {String|Object} When given a BigNumber object it returns one as well, otherwise a number
 */
 var toLeto = function(number, unit) {
@@ -2350,7 +2350,7 @@ var isJson = function (str) {
 };
 
 /**
- * Returns true if given string is a valid Ethereum block header bloom.
+ * Returns true if given string is a valid Sberex block header bloom.
  *
  * @method isBloom
  * @param {String} hex encoded bloom filter
@@ -2550,7 +2550,7 @@ var properties = function () {
             inputFormatter: utils.toDecimal
         }),
         new Property({
-            name: 'version.ethereum',
+            name: 'version.sberex',
             getter: 'eth_protocolVersion',
             inputFormatter: utils.toDecimal
         }),
@@ -4437,7 +4437,7 @@ var Iban = function (iban) {
 };
 
 /**
- * This method should be used to create iban object from ethereum address
+ * This method should be used to create iban object from sberex address
  *
  * @method fromAddress
  * @param {String} address
@@ -5803,7 +5803,7 @@ module.exports = Shh;
  * @author Alex Beregszaszi <alex@rtfs.hu>
  * @date 2016
  *
- * Reference: https://github.com/ethereum/go-ethereum/blob/swarm/internal/web3ext/web3ext.go#L33
+ * Reference: https://github.com/Sberex/go-sberex/blob/swarm/internal/web3ext/web3ext.go#L33
  */
 
 "use strict";
@@ -6258,7 +6258,7 @@ var errors = require('./errors');
 
 /**
  * It's responsible for passing messages to providers
- * It's also responsible for polling the ethereum node for incoming messages
+ * It's also responsible for polling the sberex node for incoming messages
  * Default poll timeout is 1 second
  * Singleton
  */
