@@ -39,12 +39,12 @@ import (
 
 var (
 	autoCashInterval     = 300 * time.Second           // default interval for autocash
-	autoCashThreshold    = big.NewInt(50000000000000)  // threshold that triggers autocash (wei)
+	autoCashThreshold    = big.NewInt(50000000000000)  // threshold that triggers autocash (leto)
 	autoDepositInterval  = 300 * time.Second           // default interval for autocash
-	autoDepositThreshold = big.NewInt(50000000000000)  // threshold that triggers autodeposit (wei)
-	autoDepositBuffer    = big.NewInt(100000000000000) // buffer that is surplus for fork protection etc (wei)
-	buyAt                = big.NewInt(20000000000)     // maximum chunk price host is willing to pay (wei)
-	sellAt               = big.NewInt(20000000000)     // minimum chunk price host requires (wei)
+	autoDepositThreshold = big.NewInt(50000000000000)  // threshold that triggers autodeposit (leto)
+	autoDepositBuffer    = big.NewInt(100000000000000) // buffer that is surplus for fork protection etc (leto)
+	buyAt                = big.NewInt(20000000000)     // maximum chunk price host is willing to pay (leto)
+	sellAt               = big.NewInt(20000000000)     // minimum chunk price host requires (leto)
 	payAt                = 100                         // threshold that triggers payment {request} (units)
 	dropAt               = 10000                       // threshold that triggers disconnect (units)
 )
@@ -165,12 +165,12 @@ func NewSwap(local *SwapParams, remote *SwapProfile, backend chequebook.Backend,
 	self.SetRemote(remote.Profile)
 	var buy, sell string
 	if self.Buys {
-		buy = "purchase from peer enabled at " + remote.SellAt.String() + " wei/chunk"
+		buy = "purchase from peer enabled at " + remote.SellAt.String() + " leto/chunk"
 	} else {
 		buy = "purchase from peer disabled"
 	}
 	if self.Sells {
-		sell = "selling to peer enabled at " + local.SellAt.String() + " wei/chunk"
+		sell = "selling to peer enabled at " + local.SellAt.String() + " leto/chunk"
 	} else {
 		sell = "selling to peer disabled"
 	}
