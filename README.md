@@ -10,10 +10,27 @@ https://camo.githubusercontent.com/915b7be44ada53c290eb157634330494ebe3e30a/6874
 
 ## Building the source
 
+Update Ubuntu installation with the latest packages.
+
+    sudo apt-get update
+    sudo apt-get -y upgrade
+    
 Building geth requires both a Go (version 1.7 or later) and a C compiler.
+
+    sudo add-apt-repository ppa:gophers/archive
+    sudo apt update
+    sudo apt-get install golang-1.9-go
+    echo "export PATH=\$PATH:/usr/lib/go-1.9/bin" >> ~/.profile
+    source ~/.profile
+    go version
+    sudo apt-get install build-essential
+    sudo apt-get install gcc    
+
 You can install them using your favourite package manager.
 Once the dependencies are installed, run
 
+    git clone https://github.com/Sberex/go-sberex.git
+    cd go-sberex
     make geth
 
 or, to build the full suite of utilities:
