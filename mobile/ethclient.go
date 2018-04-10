@@ -143,7 +143,7 @@ func (ec *SberexClient) SubscribeNewHead(ctx *Context, handler NewHeadHandler, b
 
 // State Access
 
-// GetBalanceAt returns the wei balance of the given account.
+// GetBalanceAt returns the leto balance of the given account.
 // The block number can be <0, in which case the balance is taken from the latest known block.
 func (ec *SberexClient) GetBalanceAt(ctx *Context, account *Address, number int64) (balance *BigInt, _ error) {
 	if number < 0 {
@@ -232,7 +232,7 @@ func (ec *SberexClient) SubscribeFilterLogs(ctx *Context, query *FilterQuery, ha
 
 // Pending State
 
-// GetPendingBalanceAt returns the wei balance of the given account in the pending state.
+// GetPendingBalanceAt returns the leto balance of the given account in the pending state.
 func (ec *SberexClient) GetPendingBalanceAt(ctx *Context, account *Address) (balance *BigInt, _ error) {
 	rawBalance, err := ec.client.PendingBalanceAt(ctx.context, account.address)
 	return &BigInt{rawBalance}, err
