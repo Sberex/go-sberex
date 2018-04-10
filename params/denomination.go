@@ -21,4 +21,5 @@ const (
 	Serg      = 1e9
 	Bit       = 1e16
 	Sbr       = 1e18
+	Ann       = 1e21
 )
