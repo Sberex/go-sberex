@@ -99,10 +99,10 @@ func (v *BlockValidator) ValidateState(block, parent *types.Block, statedb *stat
 // CalcGasLimit computes the gas limit of the next block after parent.
 // This is miner strategy, not consensus protocol.
 func CalcGasLimit(parent *types.Block) uint64 {
-	// contrib = (parentGasUsed * 3 / 2) / 1024
+	// contrib = (parentGasUsed * 3 / 2) / 256
 	contrib := (parent.GasUsed() + parent.GasUsed()/2) / params.GasLimitBoundDivisor
 
-	// decay = parentGasLimit / 1024 -1
+	// decay = parentGasLimit / 256 - 1
 	decay := parent.GasLimit()/params.GasLimitBoundDivisor - 1
 
 	/*
@@ -117,7 +117,7 @@ func CalcGasLimit(parent *types.Block) uint64 {
 		limit = params.MinGasLimit
 	}
 	// however, if we're now below the target (TargetGasLimit) we increase the
-	// limit as much as we can (parentGasLimit / 1024 -1)
+	// limit as much as we can (parentGasLimit / 256 - 1)
 	if limit < params.TargetGasLimit {
 		limit = parent.GasLimit() + decay
 		if limit > params.TargetGasLimit {
