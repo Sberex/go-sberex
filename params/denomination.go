@@ -18,7 +18,7 @@ const (
 	//    new(big.Int).Mul(value, big.NewInt(params.Sbr))
 	//
 	Leto      = 1
-	Sberex    = 1e9
+	Serg      = 1e9
 	Bit       = 1e16
 	Sbr       = 1e18
 )
