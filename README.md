@@ -50,7 +50,7 @@ The go-sberex project comes with several wrappers/executables found in the `cmd`
 | `gethrpctest` | Developer utility tool to support our sberex/rpc-test test suite which validates baseline conformity to the Sberex JSON RPC specs. |
 | `rlpdump` | Developer utility tool to convert binary RLP (Recursive Length Prefix) dumps (data encoding used by the Ethereum protocol both network as well as consensus wise) to user friendlier hierarchical representation (e.g. `rlpdump --hex CE0183FFFFFFC4C304050583616263`). |
 | `swarm`    | swarm daemon and tools. This is the entrypoint for the swarm network. `swarm --help` for command line options and subcommands. See https://swarm-guide.readthedocs.io for swarm documentation. |
-| `puppeth`    | a CLI wizard that aids in creating a new Ethereum network. |
+| `puppeth`    | a CLI wizard that aids in creating a new Sberex network. |
 
 ## Running geth
 
