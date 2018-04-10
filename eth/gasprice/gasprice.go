@@ -24,7 +24,7 @@ import (
 	"github.com/Sberex/go-sberex/rpc"
 )
 
-var maxPrice = big.NewInt(500 * params.Shannon)
+var maxPrice = big.NewInt(500 * params.Serg)
 
 type Config struct {
 	Blocks     int
