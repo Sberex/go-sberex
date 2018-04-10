@@ -37,10 +37,10 @@ type Profile struct {
 // automatic deposit and automatic cashing
 type Strategy struct {
 	AutoCashInterval     time.Duration // default interval for autocash
-	AutoCashThreshold    *big.Int      // threshold that triggers autocash (wei)
+	AutoCashThreshold    *big.Int      // threshold that triggers autocash (leto)
 	AutoDepositInterval  time.Duration // default interval for autocash
-	AutoDepositThreshold *big.Int      // threshold that triggers autodeposit (wei)
-	AutoDepositBuffer    *big.Int      // buffer that is surplus for fork protection etc (wei)
+	AutoDepositThreshold *big.Int      // threshold that triggers autodeposit (leto)
+	AutoDepositBuffer    *big.Int      // buffer that is surplus for fork protection etc (leto)
 }
 
 // Params extends the public profile with private parameters relating to
