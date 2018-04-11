@@ -200,7 +200,7 @@ var dashboardContent = `
 										<p>Puppeth is a tool to aid you in creating a new Sberex network down to the genesis block, bootnodes, signers, ethstats server, crypto faucet, wallet browsers, block explorer, dashboard and more; without the hassle that it would normally entail to manually configure all these services one by one.</p>
 										<p>Puppeth uses ssh to dial in to remote servers, and builds its network components out of docker containers using docker-compose. The user is guided through the process via a command line wizard that does the heavy lifting and topology configuration automatically behind the scenes.</p>
 										<br/>
-										<p>Puppeth is distributed as part of the <a href="https://geth.ethereum.org/downloads/" target="about:blank">Geth &amp; Tools</a> bundles, but can also be installed separately via:<pre>go get github.com/Sberex/go-sberex/cmd/puppeth</pre></p>
+										<p>Puppeth is distributed as part of the <a href="https://geth.sberex.org/downloads/" target="about:blank">Geth &amp; Tools</a> bundles, but can also be installed separately via:<pre>go get github.com/Sberex/go-sberex/cmd/puppeth</pre></p>
 										<br/>
 										<p><em>Copyright 2018. The go-sberex Authors.</em></p>
 									</div>
