@@ -31,6 +31,7 @@ Once the dependencies are installed, run
 
     git clone https://github.com/Sberex/go-sberex.git
     cd go-sberex
+    git checkout master
     make geth
 
 or, to build the full suite of utilities:
