@@ -31,8 +31,7 @@ import (
 
 // Ethash proof-of-work protocol constants.
 var (
-	FrontierBlockReward    *big.Int = big.NewInt(3e+18) // Block reward in leto for successfully mining a block
-	ByzantiumBlockReward   *big.Int = big.NewInt(3e+18) // Block reward in leto for successfully mining a block upward from Byzantium
+	SberexBlockReward    *big.Int = big.NewInt(3e+18) // Block reward in leto for successfully mining a block
 	maxUncles                       = 2                 // Maximum number of uncles allowed in a single block
 	allowedFutureBlockTime          = 33 * time.Second  // Max time from current time allowed for blocks, before they're considered future blocks
 )
@@ -388,6 +387,9 @@ func calcDifficultyHomestead(time uint64, parent *types.Header) *big.Int {
 // difficulty that a new block should have when created at time given the parent
 // block's time and difficulty. The calculation uses the Frontier rules.
 func calcDifficultyFrontier(time uint64, parent *types.Header) *big.Int {
+	// algorithm:
+	// diff = (parent_diff + (parent_diff / 2048 * max(1 - (block_timestamp - parent_timestamp) // 10, -99)))
+	
 	diff := new(big.Int)
 	adjust := new(big.Int).Div(parent.Difficulty, params.DifficultyBoundDivisor)
 	bigTime := new(big.Int)
@@ -486,10 +488,8 @@ var (
 // included uncles. The coinbase of each uncle block is also rewarded.
 func accumulateRewards(config *params.ChainConfig, state *state.StateDB, header *types.Header, uncles []*types.Header) {
 	// Select the correct block reward based on chain progression
-	blockReward := FrontierBlockReward
-	if config.IsByzantium(header.Number) {
-		blockReward = ByzantiumBlockReward
-	}
+	blockReward := SberexBlockReward
+
 	// Accumulate the rewards for the miner and any included uncles
 	reward := new(big.Int).Set(blockReward)
 	r := new(big.Int)
