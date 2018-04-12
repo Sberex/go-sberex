@@ -31,7 +31,7 @@ import (
 
 // Ethash proof-of-work protocol constants.
 var (
-	SberexBlockReward    *big.Int = big.NewInt(3e+18) // Block reward in leto for successfully mining a block
+	SberexBlockReward    *big.Int   = big.NewInt(3e+18) // Block reward in leto for successfully mining a block
 	maxUncles                       = 2                 // Maximum number of uncles allowed in a single block
 	allowedFutureBlockTime          = 33 * time.Second  // Max time from current time allowed for blocks, before they're considered future blocks
 )
