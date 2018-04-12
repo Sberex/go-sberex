@@ -29,9 +29,9 @@ import (
 )
 
 const (
-	datasetInitBytes   = 1 << 30 // Bytes in dataset at genesis
+	datasetInitBytes   = 1 << 29 // Bytes in dataset at genesis
 	datasetGrowthBytes = 0       // Dataset growth per epoch
-	cacheInitBytes     = 1 << 24 // Bytes in cache at genesis
+	cacheInitBytes     = 1 << 23 // Bytes in cache at genesis
 	cacheGrowthBytes   = 0       // Cache growth per epoch
 	epochLength        = 90000   // Blocks per epoch
 	mixBytes           = 128     // Width of mix
