@@ -15,7 +15,7 @@ import (
 	"bytes"
 	"errors"
 	"fmt"
-	"math"
+	gmath "math"
 	"math/big"
 	"runtime"
 	"time"
