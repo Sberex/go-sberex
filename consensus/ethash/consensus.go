@@ -495,8 +495,8 @@ func accumulateRewards(config *params.ChainConfig, state *state.StateDB, header 
 	b := header.Number
 	blockn := float64(b.Int64())
 	blockr := PiCo * math.Exp(-math.Pow(blockn / 10512000, 2) / 2)
-	blockr = blockr * s / 10512000
-	blockr = blockr * 1e18
+	blockr *= s / 10512000
+	blockr *= 1e18
 	SberexBlockReward.SetInt64(int64(blockr))
 	blockReward := SberexBlockReward
 
