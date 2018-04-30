@@ -490,13 +490,18 @@ var (
 // reward. The total reward consists of the static block reward and rewards for
 // included uncles. The coinbase of each uncle block is also rewarded.
 func accumulateRewards(config *params.ChainConfig, state *state.StateDB, header *types.Header, uncles []*types.Header) {
-	// Select the correct block reward based on chain progression
 	s := float64(MaximumSupply.Int64())
 	b := header.Number
 	blockn := float64(b.Int64())
+	
+	// Calculate reward accoding to normal distribution
 	blockr := PiCo * math.Exp(-math.Pow(blockn / 10512000, 2) / 2)
 	blockr *= s / 10512000
+	
+	// Convert from sbr to leto
 	blockr *= 1e18
+	
+	// New block reward
 	SberexBlockReward.SetInt64(int64(blockr))
 	blockReward := SberexBlockReward
 
