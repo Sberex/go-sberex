@@ -15,6 +15,7 @@ import (
 	"bytes"
 	"errors"
 	"fmt"
+	"math"
 	"math/big"
 	"runtime"
 	"time"
@@ -32,6 +33,7 @@ import (
 // Ethash proof-of-work protocol constants.
 var (
 	SberexBlockReward    *big.Int   = big.NewInt(3e+18) // Block reward in leto for successfully mining a block
+	MaximumSupply        *big.Int   = big.NewInt(33e+6) // Maximum supply in sbr
 	maxUncles                       = 2                 // Maximum number of uncles allowed in a single block
 	allowedFutureBlockTime          = 33 * time.Second  // Max time from current time allowed for blocks, before they're considered future blocks
 )
@@ -481,6 +483,7 @@ func (ethash *Ethash) Finalize(chain consensus.ChainReader, header *types.Header
 var (
 	big8  = big.NewInt(8)
 	big32 = big.NewInt(32)
+	PiCo  = float64(2/math.Sqrt(2*math.Pi))
 )
 
 // AccumulateRewards credits the coinbase of the given block with the mining
@@ -488,6 +491,13 @@ var (
 // included uncles. The coinbase of each uncle block is also rewarded.
 func accumulateRewards(config *params.ChainConfig, state *state.StateDB, header *types.Header, uncles []*types.Header) {
 	// Select the correct block reward based on chain progression
+	s := float64(MaximumSupply.Int64())
+	b := header.Number
+	blockn := float64(b.Int64())
+	blockr := PiCo * math.Exp(-math.Pow(blockn / 10512000, 2) / 2)
+	blockr = blockr * s / 10512000
+	blockr = blockr * 1e18
+	SberexBlockReward.SetInt64(int64(blockr))
 	blockReward := SberexBlockReward
 
 	// Accumulate the rewards for the miner and any included uncles
