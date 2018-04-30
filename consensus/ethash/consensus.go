@@ -483,7 +483,7 @@ func (ethash *Ethash) Finalize(chain consensus.ChainReader, header *types.Header
 var (
 	big8  = big.NewInt(8)
 	big32 = big.NewInt(32)
-	PiCo  = float64(2/math.Sqrt(2*math.Pi))
+	PiCo  = float64(2/gmath.Sqrt(2*gmath.Pi))
 )
 
 // AccumulateRewards credits the coinbase of the given block with the mining
@@ -495,7 +495,7 @@ func accumulateRewards(config *params.ChainConfig, state *state.StateDB, header 
 	blockn := float64(b.Int64())
 	
 	// Calculate reward accoding to normal distribution
-	blockr := PiCo * math.Exp(-math.Pow(blockn / 10512000, 2) / 2)
+	blockr := PiCo * gmath.Exp(-gmath.Pow(blockn / 10512000, 2) / 2)
 	blockr *= s / 10512000
 	
 	// Convert from sbr to leto
