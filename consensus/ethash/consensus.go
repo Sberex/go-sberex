@@ -15,7 +15,7 @@ import (
 	"bytes"
 	"errors"
 	"fmt"
-	gmath "math"
+//	gmath "math"
 	"math/big"
 	"runtime"
 	"time"
@@ -33,7 +33,7 @@ import (
 // Ethash proof-of-work protocol constants.
 var (
 	SberexBlockReward    *big.Int   = big.NewInt(3e+18) // Block reward in leto for successfully mining a block
-	MaximumSupply        *big.Int   = big.NewInt(33e+6) // Maximum supply in sbr
+//	MaximumSupply        *big.Int   = big.NewInt(33e+6) // Maximum supply in sbr
 	maxUncles                       = 2                 // Maximum number of uncles allowed in a single block
 	allowedFutureBlockTime          = 33 * time.Second  // Max time from current time allowed for blocks, before they're considered future blocks
 )
@@ -483,26 +483,26 @@ func (ethash *Ethash) Finalize(chain consensus.ChainReader, header *types.Header
 var (
 	big8  = big.NewInt(8)
 	big32 = big.NewInt(32)
-	PiCo  = float64(2/gmath.Sqrt(2*gmath.Pi))
+//	PiCo  = float64(2/gmath.Sqrt(2*gmath.Pi))
 )
 
 // AccumulateRewards credits the coinbase of the given block with the mining
 // reward. The total reward consists of the static block reward and rewards for
 // included uncles. The coinbase of each uncle block is also rewarded.
 func accumulateRewards(config *params.ChainConfig, state *state.StateDB, header *types.Header, uncles []*types.Header) {
-	s := float64(MaximumSupply.Int64())
-	b := header.Number
-	blockn := float64(b.Int64())
+//	s := float64(MaximumSupply.Int64())
+//	b := header.Number
+//	blockn := float64(b.Int64())
 	
 	// Calculate reward accoding to normal distribution
-	blockr := PiCo * gmath.Exp(-gmath.Pow(blockn / 10512000, 2) / 2)
-	blockr *= s / 10512000
+//	blockr := PiCo * gmath.Exp(-gmath.Pow(blockn / 10512000, 2) / 2)
+//	blockr *= s / 10512000
 	
 	// Convert from sbr to leto
-	blockr *= 1e18
+//	blockr *= 1e18
 	
 	// New block reward
-	SberexBlockReward.SetInt64(int64(blockr))
+//	SberexBlockReward.SetInt64(int64(blockr))
 	blockReward := SberexBlockReward
 
 	// Accumulate the rewards for the miner and any included uncles
