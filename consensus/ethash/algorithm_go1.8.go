@@ -18,6 +18,10 @@ import "math/big"
 // cacheSize returns the size of the ethash verification cache that belongs to a certain
 // block number.
 func cacheSize(block uint64) uint64 {
+	epoch := int(block / epochLength)
+	if epoch < maxEpoch {
+	return cacheSizes[epoch]
+	}
 	return calcCacheSize(epoch)
 }
 
@@ -35,6 +39,10 @@ func calcCacheSize(epoch int) uint64 {
 // datasetSize returns the size of the ethash mining dataset that belongs to a certain
 // block number.
 func datasetSize(block uint64) uint64 {
+	epoch := int(block / epochLength)
+	if epoch < maxEpoch {
+		return datasetSizes[epoch]
+	}
 	return calcDatasetSize(epoch)
 }
 
