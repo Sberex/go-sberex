@@ -31,7 +31,7 @@ import (
 )
 
 const (
-	defaultDialTimeout = 30 * time.Second
+	defaultDialTimeout = 15 * time.Second
 
 	// Connectivity defaults.
 	maxActiveDialTasks     = 16
@@ -40,10 +40,10 @@ const (
 
 	// Maximum time allowed for reading a complete message.
 	// This is effectively the amount of time a connection can be idle.
-	frameReadTimeout = 60 * time.Second
+	frameReadTimeout = 30 * time.Second
 
 	// Maximum amount of time allowed for writing a complete message.
-	frameWriteTimeout = 40 * time.Second
+	frameWriteTimeout = 20 * time.Second
 )
 
 var errServerStopped = errors.New("server stopped")
