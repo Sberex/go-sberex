@@ -34,7 +34,7 @@ import (
 var (
 	SberexBlockReward    *big.Int   = big.NewInt(3e+18) // Block reward in leto for successfully mining a block
 	MaximumSupply        *big.Int   = big.NewInt(33e+6) // Maximum supply in sbr
-	maxUncles                       = 0                 // Maximum number of uncles allowed in a single block
+	maxUncles                       = 2                 // Maximum number of uncles allowed in a single block
 	allowedFutureBlockTime          = 33 * time.Second  // Max time from current time allowed for blocks, before they're considered future blocks
 )
 
