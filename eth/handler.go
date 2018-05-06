@@ -47,7 +47,7 @@ const (
 )
 
 var (
-	daoChallengeTimeout = 30 * time.Second // Time allowance for a node to reply to the DAO handshake challenge
+	daoChallengeTimeout = 15 * time.Second // Time allowance for a node to reply to the DAO handshake challenge
 )
 
 // errIncompatibleConfig is returned if the requested protocols and configs are
