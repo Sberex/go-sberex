@@ -15,8 +15,7 @@ package params
 // the main Sberex network.
 var MainnetBootnodes = []string{
 	// Sberex Foundation Go Bootnodes
-	"enode://0e1634b3c7f97ff32a87fe18e4d70d6ddc44a0473ed375a2c0effb304d4439b521779cefe320e192d09f2861334b860d733156da6e880cfffd82e65421168b66@192.168.88.31:30303",
-	"enode://0e1634b3c7f97ff32a87fe18e4d70d6ddc44a0473ed375a2c0effb304d4439b521779cefe320e192d09f2861334b860d733156da6e880cfffd82e65421168b66@176.104.8.150:30303",
+	"enode://91e7c2a9a74974bc95aef422eafae13e9fa5bc7a925e77b6104e6e593b2379afb740ff55a2b3cf80e45accc09150e02060406918a2bbe4bf56d86138268a0bcb@192.168.88.31:30303",
 }
 
 // TestnetBootnodes are the enode URLs of the P2P bootstrap nodes running on the
