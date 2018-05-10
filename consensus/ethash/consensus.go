@@ -428,12 +428,7 @@ func (ethash *Ethash) VerifySeal(chain consensus.ChainReader, header *types.Head
 	if ethash.shared != nil {
 		return ethash.shared.VerifySeal(chain, header)
 	}
-	// Sanity check that the block number is below the lookup table size (60M blocks)
 	number := header.Number.Uint64()
-	if number/epochLength >= maxEpoch {
-		// Go < 1.7 cannot calculate new cache/dataset sizes (no fast prime check)
-		return errNonceOutOfRange
-	}
 	// Ensure that we have a valid difficulty for the block
 	if header.Difficulty.Sign() <= 0 {
 		return errInvalidDifficulty
