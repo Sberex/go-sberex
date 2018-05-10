@@ -355,9 +355,9 @@ const maxEpoch = 1
 // datasetSizes is a lookup table for the ethash dataset size for the first
 // epoch.
 var datasetSizes = [maxEpoch]uint64{
-	536870912}
+	536870528}
 
 // cacheSizes is a lookup table for the ethash verification cache size for the
 // first epoch.
 var cacheSizes = [maxEpoch]uint64{
-	8388608}
+	8388544}
