@@ -479,6 +479,7 @@ func (ethash *Ethash) Finalize(chain consensus.ChainReader, header *types.Header
 
 // Some weird constants to avoid constant memory allocs for them.
 var (
+	big0  = big.NewInt(0)
 	big8  = big.NewInt(8)
 	big32 = big.NewInt(32)
 	PiCo  = float64(2/gmath.Sqrt(2*gmath.Pi))
@@ -505,5 +506,8 @@ func accumulateRewards(config *params.ChainConfig, state *state.StateDB, header 
 
 	// Accumulate the rewards for the miner
 	reward := new(big.Int).Set(blockReward)
+	for _, uncle := range uncles {
+		state.AddBalance(uncle.Coinbase, big0)
+	}
 	state.AddBalance(header.Coinbase, reward)
 }
