@@ -501,8 +501,7 @@ func accumulateRewards(config *params.ChainConfig, state *state.StateDB, header 
 	blockr *= 1e18
 	
 	// New block reward
-	SberexBlockReward.SetInt64(int64(blockr))
-	blockReward := SberexBlockReward
+	blockReward := big.NewInt(int64(blockr))
 
 	// Accumulate the rewards for the miner
 	reward := new(big.Int).Set(blockReward)
